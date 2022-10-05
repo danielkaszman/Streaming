@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -10,14 +10,45 @@ import {
 } from "../Components/StyledComponents/Styled_Components";
 
 function RegistratePage() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [repeatPassword, setRepeatPassword] = useState();
+
   return (
     <Container>
       <Content>
         <Cim>Registrate</Cim>
-        <Input type={"text"} placeholder={"Email"} />
-        <Input type={"password"} placeholder={"Password"} />
-        <Input type={"password"} placeholder={"Repeat password"} />
-        <Button>Registrate</Button>
+        <Input
+          type={"text"}
+          placeholder={"Email"}
+          onInput={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <Input
+          type={"password"}
+          placeholder={"Password"}
+          onInput={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <Input
+          type={"password"}
+          placeholder={"Repeat password"}
+          onInput={(e) => {
+            setRepeatPassword(e.target.value);
+          }}
+        />
+        <Button
+          disabled={
+            !email ||
+            !password ||
+            !repeatPassword ||
+            password !== repeatPassword
+          }
+        >
+          Registrate
+        </Button>
         <Message>
           If you already have an account please{" "}
           <Link to={"/login"}>

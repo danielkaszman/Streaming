@@ -68,6 +68,13 @@ export const Button = styled.button`
   :active {
     background-color: #8a0000;
   }
+
+  :disabled {
+    transform: scale(1);
+    background-color: gray;
+    color: lightgray;
+    cursor: default;
+  }
 `;
 
 export const Message = styled.p`

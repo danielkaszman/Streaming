@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -10,13 +10,28 @@ import {
 } from "../Components/StyledComponents/Styled_Components";
 
 function LoginPage() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
   return (
     <Container>
       <Content>
         <Cim>Login</Cim>
-        <Input type={"text"} placeholder={"Email"} />
-        <Input type={"password"} placeholder={"Password"} />
-        <Button>Login</Button>
+        <Input
+          type={"text"}
+          placeholder={"Email"}
+          onInput={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <Input
+          type={"password"}
+          placeholder={"Password"}
+          onInput={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <Button disabled={!email || !password}>Login</Button>
         <Message>
           If you don't have an account please{" "}
           <Link to={"/registrate"}>

@@ -22,7 +22,7 @@ export const Content = styled.div`
   width: 400px;
   padding: 50px 50px;
   background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(5px);
   border-radius: 30px;
 `;
 
@@ -54,7 +54,7 @@ export const Button = styled.button`
   width: 100%;
   font-size: 18px;
   font-weight: 400;
-  background-color: #c00000;
+  background-color: rgb(192, 0, 0);
   color: white;
   border: none;
   border-radius: 10px;
@@ -66,7 +66,7 @@ export const Button = styled.button`
   }
 
   :active {
-    background-color: #8a0000;
+    background-color: rgb(138, 0, 0);
   }
 
   :disabled {

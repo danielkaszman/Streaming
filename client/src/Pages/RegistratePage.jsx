@@ -10,6 +10,7 @@ import {
 } from "../Components/StyledComponents/Styled_Components";
 
 function RegistratePage() {
+  const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
@@ -18,6 +19,13 @@ function RegistratePage() {
     <Container>
       <Content>
         <Cim>Registrate</Cim>
+        <Input
+          type={"text"}
+          placeholder={"Name"}
+          onInput={(e) => {
+            setName(e.target.value);
+          }}
+        />
         <Input
           type={"text"}
           placeholder={"Email"}
@@ -41,6 +49,7 @@ function RegistratePage() {
         />
         <Button
           disabled={
+            !name ||
             !email ||
             !password ||
             !repeatPassword ||

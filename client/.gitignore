@@ -2,9 +2,12 @@
 
 # dependencies
 /node_modules
-/public/login-bg.jpg
 /.pnp
 .pnp.js
+
+# images
+/public/login-bg.jpg
+/public/logo.png
 
 # testing
 /coverage

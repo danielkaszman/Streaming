@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <Container>
       <Left>
-        <h1>Streamify</h1>
+        <img src="/logo.png" alt="" />
       </Left>
       <Middle>
         <Search>
@@ -43,10 +43,9 @@ const Left = styled.div`
   align-items: center;
   flex: 1;
 
-  h1 {
-    color: rgb(192, 0, 0);
-    font-weight: 400;
-    font-size: 40px;
+  img {
+    width: 80%;
+    height: 80%;
   }
 `;
 

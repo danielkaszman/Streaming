@@ -6,8 +6,7 @@
 .pnp.js
 
 # images
-/public/login-bg.jpg
-/public/logo.png
+/public/assets
 
 # testing
 /coverage

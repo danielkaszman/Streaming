@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
+import { BiMovie } from "react-icons/bi";
+import { IoTvSharp } from "react-icons/io5";
 
 function Navbar() {
   return (
     <Container>
       <Left>
-        <img src="/logo.png" alt="" />
+        <img src="/assets/logo.png" alt="" />
       </Left>
       <Middle>
         <Search>
@@ -17,8 +19,14 @@ function Navbar() {
         </Search>
       </Middle>
       <Right>
-        <a href="">Movies</a>
-        <a href="">Series</a>
+        <a href="">
+          <BiMovie />
+          <span>Movies</span>
+        </a>
+        <a href="">
+          <IoTvSharp />
+          <span>Series</span>
+        </a>
       </Right>
     </Container>
   );
@@ -99,15 +107,22 @@ const Right = styled.div`
   flex: 1;
 
   a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     margin-inline: 20px;
     font-weight: 300;
     font-size: 20px;
     color: rgb(240, 240, 240);
-    border: 2px solid transparent;
     transition: all 250ms;
 
+    span {
+      margin-left: 5px;
+    }
+
     :hover {
-      border-bottom: 2px solid rgb(192, 0, 0);
+      color: rgb(230, 0, 0);
     }
   }
 `;

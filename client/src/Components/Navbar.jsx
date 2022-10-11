@@ -43,6 +43,8 @@ const Container = styled.nav`
   right: 0;
   left: 0;
   background-color: rgb(26, 26, 26);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 30px -10px;
+  z-index: 10;
 `;
 
 const Left = styled.div`

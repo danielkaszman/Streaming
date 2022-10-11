@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
 import { BiMovie } from "react-icons/bi";
-import { IoTvSharp } from "react-icons/io5";
+import { IoTvOutline } from "react-icons/io5";
 
 function Navbar() {
   return (
@@ -24,7 +24,7 @@ function Navbar() {
           <span>Movies</span>
         </a>
         <a href="">
-          <IoTvSharp />
+          <IoTvOutline />
           <span>Series</span>
         </a>
       </Right>

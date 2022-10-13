@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <Container>
       <Left>
-        <img src="/assets/logo.png" alt="" />
+        <img src="/assets/logos/logo.png" alt="Logo" />
       </Left>
       <Middle>
         <Search>

@@ -20,22 +20,25 @@ function Carousel() {
     <Container>
       <Slide {...settings}>
         <Wrap>
-          <img src="/assets/Batman.jpg" alt="" />
+          <img src="/assets/posters/Batman.jpg" alt="Batman poster" />
         </Wrap>
         <Wrap>
-          <img src="/assets/Black Adam.jpg" alt="" />
+          <img src="/assets/posters/Black Adam.jpg" alt="Black Adam poster" />
         </Wrap>
         <Wrap>
-          <img src="/assets/Dr. Strange.jpg" alt="" />
+          <img src="/assets/posters/Dr. Strange.jpg" alt="Dr. Strange poster" />
         </Wrap>
         <Wrap>
-          <img src="/assets/John Wick.jpg" alt="" />
+          <img src="/assets/posters/John Wick.jpg" alt="John Wick poster" />
         </Wrap>
         <Wrap>
-          <img src="/assets/Joker.jpg" alt="" />
+          <img src="/assets/posters/Joker.jpg" alt="Joker poster" />
         </Wrap>
         <Wrap>
-          <img src="/assets/Rampage.jpg" alt="" />
+          <img src="/assets/posters/Rampage.jpg" alt="Rampage poster" />
+        </Wrap>
+        <Wrap>
+          <img src="/assets/posters/Star Wars.jpg" alt="Star Wars poster" />
         </Wrap>
       </Slide>
     </Container>
@@ -59,31 +62,30 @@ const Slide = styled(Slider)`
     overflow: visible;
   }
 
-  ul li button {
-    :before {
-      color: rgb(240, 240, 240);
-    }
+  ul li button::before {
+    color: rgb(240, 240, 240);
   }
 
-  li.slick-active button:before {
+  li.slick-active button::before {
     color: white;
   }
 `;
 
 const Wrap = styled.div`
+  padding-inline: 5px;
+
   img {
     width: 100%;
     height: 1000%;
-    border-inline: 5px solid rgba(121, 121, 121, 0.5);
-    border-top: 7px solid rgba(121, 121, 121, 0.5);
-    border-bottom: 7px solid rgba(121, 121, 121, 0.5);
+    border: 4px solid rgba(121, 121, 121, 0.5);
+    border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 70px 50px -20px;
     cursor: pointer;
+    transition: all 250ms;
 
     :hover {
-      border-inline: 5px solid rgb(240, 240, 240);
-      border-top: 7px solid rgb(240, 240, 240);
-      border-bottom: 7px solid rgb(240, 240, 240);
+      border: 4px solid rgb(240, 240, 240);
+      transform: scale(1.03);
     }
   }
 `;

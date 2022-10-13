@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Carousel from "../Components/Carousel";
+import Filter from "../Components/Filter";
 import Navbar from "../Components/Navbar";
 
 function Home() {
@@ -8,6 +9,7 @@ function Home() {
     <Container>
       <Navbar />
       <Carousel />
+      <Filter />
     </Container>
   );
 }

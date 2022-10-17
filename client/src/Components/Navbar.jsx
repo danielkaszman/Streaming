@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
 import { BiMovie } from "react-icons/bi";
 import { IoTvOutline } from "react-icons/io5";
 
 function Navbar() {
+  const [inputFocus, setInputFocus] = useState(false);
+
   return (
-    <Container>
+    <Container inputFocus={inputFocus}>
       <Left>
         <img src="/assets/logos/logo.png" alt="Logo" />
       </Left>
-      <Middle>
-        <Search>
+      <Middle inputFocus={inputFocus}>
+        <Search inputFocus={inputFocus}>
           <Icon>
             <BsSearch />
           </Icon>
-          <input type="text" placeholder="Search..." />
+          <input
+            type="text"
+            placeholder="Search..."
+            onFocus={() => setInputFocus(true)}
+            onBlur={() => setInputFocus(false)}
+          />
         </Search>
       </Middle>
       <Right>
@@ -42,7 +49,8 @@ const Container = styled.nav`
   top: 0;
   right: 0;
   left: 0;
-  background-color: rgb(26, 26, 26);
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
   box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 30px -10px;
   z-index: 10;
 `;
@@ -82,7 +90,10 @@ const Search = styled.div`
   padding: 6px 6px;
   background-color: rgb(49, 49, 49);
   border-radius: 10px;
+  border: 1px solid
+    ${(props) => (props.inputFocus ? "rgb(240,240,240)" : "rgb(49, 49, 49)")};
   width: 80%;
+  transition: all 250ms;
 
   input {
     font-weight: 200;

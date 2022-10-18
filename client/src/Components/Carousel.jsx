@@ -57,6 +57,7 @@ const Container = styled.div`
 const Slide = styled(Slider)`
   width: 80%;
   height: 80%;
+  padding-bottom: 20px;
 
   .slick-list {
     overflow: visible;
@@ -85,7 +86,7 @@ const Wrap = styled.div`
 
     :hover {
       border: 4px solid rgb(240, 240, 240);
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
   }
 `;

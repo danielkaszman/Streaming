@@ -5,6 +5,7 @@ import {
   Content,
   Cim,
   Input,
+  Warning,
   Button,
   Message,
 } from "../Components/StyledComponents/Styled_Components";
@@ -47,6 +48,7 @@ function RegistratePage() {
             setRepeatPassword(e.target.value);
           }}
         />
+        <Warning>User already exists!</Warning>
         <Button
           disabled={
             !name ||

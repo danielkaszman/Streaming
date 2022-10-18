@@ -48,9 +48,14 @@ export const Input = styled.input`
   }
 `;
 
+export const Warning = styled.p`
+  font-size: 18px;
+  color: red;
+`;
+
 export const Button = styled.button`
   height: 45px;
-  margin: 10px 0px;
+  margin: 20px 0px;
   width: 100%;
   font-size: 18px;
   font-weight: 400;
@@ -81,7 +86,6 @@ export const Message = styled.p`
   color: white;
   font-weight: 200;
   font-size: 13px;
-  margin-top: 10px;
 
   span {
     text-decoration: underline;

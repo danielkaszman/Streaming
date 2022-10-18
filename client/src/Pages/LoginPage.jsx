@@ -5,6 +5,7 @@ import {
   Content,
   Cim,
   Input,
+  Warning,
   Button,
   Message,
 } from "../Components/StyledComponents/Styled_Components";
@@ -31,6 +32,7 @@ function LoginPage() {
             setPassword(e.target.value);
           }}
         />
+        <Warning>Wrong Username or Password!</Warning>
         <Button disabled={!email || !password}>Login</Button>
         <Message>
           If you don't have an account please{" "}

@@ -8,7 +8,7 @@ import {
   Warning,
   Button,
   Message,
-} from "../Components/StyledComponents/Styled_Components";
+} from "../Components/StyledComponents/Login_Styled_Components";
 
 function LoginPage() {
   const [email, setEmail] = useState();

@@ -73,11 +73,11 @@ const Slide = styled(Slider)`
 `;
 
 const Wrap = styled.div`
-  padding-inline: 5px;
+  padding-inline: 10px;
 
   img {
     width: 100%;
-    height: 1000%;
+    height: 100%;
     border: 4px solid rgba(121, 121, 121, 0.5);
     border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 70px 50px -20px;
@@ -86,7 +86,7 @@ const Wrap = styled.div`
 
     :hover {
       border: 4px solid rgb(240, 240, 240);
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
   }
 `;

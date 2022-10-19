@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Carousel() {
+function Carousel(props) {
   const settings = {
     dots: true,
     infinite: true,
@@ -19,27 +19,13 @@ function Carousel() {
   return (
     <Container>
       <Slide {...settings}>
-        <Wrap>
-          <img src="/assets/posters/Batman.jpg" alt="Batman poster" />
-        </Wrap>
-        <Wrap>
-          <img src="/assets/posters/Black Adam.jpg" alt="Black Adam poster" />
-        </Wrap>
-        <Wrap>
-          <img src="/assets/posters/Dr. Strange.jpg" alt="Dr. Strange poster" />
-        </Wrap>
-        <Wrap>
-          <img src="/assets/posters/John Wick.jpg" alt="John Wick poster" />
-        </Wrap>
-        <Wrap>
-          <img src="/assets/posters/Joker.jpg" alt="Joker poster" />
-        </Wrap>
-        <Wrap>
-          <img src="/assets/posters/Rampage.jpg" alt="Rampage poster" />
-        </Wrap>
-        <Wrap>
-          <img src="/assets/posters/Star Wars.jpg" alt="Star Wars poster" />
-        </Wrap>
+        <Wrap>{props.img1}</Wrap>
+        <Wrap>{props.img2}</Wrap>
+        <Wrap>{props.img3}</Wrap>
+        <Wrap>{props.img4}</Wrap>
+        <Wrap>{props.img5}</Wrap>
+        <Wrap>{props.img6}</Wrap>
+        <Wrap>{props.img7}</Wrap>
       </Slide>
     </Container>
   );
@@ -78,6 +64,7 @@ const Wrap = styled.div`
   img {
     width: 100%;
     height: 100%;
+    color: rgb(240, 240, 240);
     border: 4px solid rgba(121, 121, 121, 0.5);
     border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 70px 50px -20px;

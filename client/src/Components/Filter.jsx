@@ -2,30 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { Items } from "./StyledComponents/Stats_Styled_Components";
 
-function Filter() {
+function Filter(props) {
   return (
     <Container>
-      <Items>
-        <img src="/assets/logos/DC-logo.jpg" alt="DC logo" />
-      </Items>
-      <Items>
-        <img src="/assets/logos/Marvel-logo.jpg" alt="Marvel logo" />
-      </Items>
-      <Items>
-        <img src="/assets/logos/Star Wars-logo.jpg" alt="Star Wars logo" />
-      </Items>
-      <Items>
-        <img
-          src="/assets/logos/Harry Potter-logo.jpg"
-          alt="Harry Potter logo"
-        />
-      </Items>
-      <Items>
-        <img
-          src="/assets/logos/Jurassic Park-logo.jpg"
-          alt="Jurassic Park logo"
-        />
-      </Items>
+      <Items>{props.img1}</Items>
+      <Items>{props.img2}</Items>
+      <Items>{props.img3}</Items>
+      <Items>{props.img4}</Items>
+      <Items>{props.img5}</Items>
     </Container>
   );
 }

@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Items } from "./StyledComponents/Stats_Styled_Components";
 
 function Filter({ images }) {
   return (
     <Container>
       {images.map((image) => (
-        <Items>{image}</Items>
+        <Logo>{image}</Logo>
       ))}
     </Container>
   );
@@ -20,4 +19,25 @@ const Container = styled.div`
   grid-gap: 50px;
   padding-inline: 50px;
   padding-bottom: 100px;
+`;
+
+const Logo = styled.div`
+  border-radius: 20px;
+  border: 4px solid rgba(121, 121, 121, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 70px 50px -20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 250ms;
+
+  img {
+    width: 100%;
+    height: 100%;
+    color: rgb(240, 240, 240);
+    object-fit: cover;
+  }
+
+  :hover {
+    border: 4px solid rgb(240, 240, 240);
+    transform: scale(1.05);
+  }
 `;

@@ -3,9 +3,7 @@ import styled from "styled-components";
 import Navbar from "../Components/Navbar";
 import Carousel from "../Components/Carousel";
 import Filter from "../Components/Filter";
-import MostWatched from "../Components/MostWatched";
-import NewReleases from "../Components/NewReleases";
-import Popular from "../Components/Popular";
+import Content from "../Components/Content";
 
 function Series({ isSeriesActive, setIsSeriesActive }) {
   useEffect(() => {
@@ -43,27 +41,64 @@ function Series({ isSeriesActive, setIsSeriesActive }) {
       <Filter
         images={[
           <img
-            src="/assets/logos/series/Breaking Bad-logo.jpg"
-            alt="Breaking Bad logo"
-          />,
-          <img
             src="/assets/logos/series/The Clone Wars-logo.jpg"
             alt="The Clone Wars logo"
           />,
+          <img src="/assets/logos/series/F1.jpg" alt="Formula 1 logo" />,
           <img
             src="/assets/logos/series/Stranger Things-logo.png"
             alt="Stranger Things logo"
           />,
-          <img src="/assets/logos/series/F1.jpg" alt="Formula 1 logo" />,
+          <img
+            src="/assets/logos/series/Breaking Bad-logo.jpg"
+            alt="Breaking Bad logo"
+          />,
           <img
             src="/assets/logos/series/Moon Knight.jpg"
             alt="Moon Knight logo"
           />,
         ]}
       />
-      <NewReleases />
-      <MostWatched />
-      <Popular />
+      <Content
+        section={"New Releases"}
+        covers={[
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+        ]}
+      />
+      <Content
+        section={"Most Watched"}
+        covers={[
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+        ]}
+      />
+      <Content
+        section={"Popular"}
+        covers={[
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+        ]}
+      />
+      <Content
+        section={"All Series"}
+        covers={[
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+        ]}
+      />
     </Container>
   );
 }

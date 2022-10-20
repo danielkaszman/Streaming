@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../Components/Navbar";
 import Carousel from "../Components/Carousel";
-import MostWatched from "../Components/MostWatched";
-import NewReleases from "../Components/NewReleases";
-import Popular from "../Components/Popular";
+import Content from "../Components/Content";
 
 function Home({ isHomeActive, setIsHomeActive }) {
   useEffect(() => {
@@ -39,9 +37,46 @@ function Home({ isHomeActive, setIsHomeActive }) {
           />,
         ]}
       />
-      <NewReleases />
-      <MostWatched />
-      <Popular />
+      <Content
+        section={"New Releases"}
+        covers={[
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+        ]}
+      />
+      <Content
+        section={"Most Watched"}
+        covers={[
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+        ]}
+      />
+      <Content
+        section={"Popular"}
+        covers={[
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+        ]}
+      />
+      <Content
+        section={"All"}
+        covers={[
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
+        ]}
+      />
     </Container>
   );
 }

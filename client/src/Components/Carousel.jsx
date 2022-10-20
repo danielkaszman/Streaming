@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Carousel(props) {
+function Carousel({ images }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -19,13 +19,9 @@ function Carousel(props) {
   return (
     <Container>
       <Slide {...settings}>
-        <Wrap>{props.img1}</Wrap>
-        <Wrap>{props.img2}</Wrap>
-        <Wrap>{props.img3}</Wrap>
-        <Wrap>{props.img4}</Wrap>
-        <Wrap>{props.img5}</Wrap>
-        <Wrap>{props.img6}</Wrap>
-        <Wrap>{props.img7}</Wrap>
+        {images.map((image) => (
+          <Wrap>{image}</Wrap>
+        ))}
       </Slide>
     </Container>
   );
@@ -38,6 +34,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 120px;
+  padding-bottom: 70px;
 `;
 
 const Slide = styled(Slider)`

@@ -1,16 +1,19 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
 import { BiMovie } from "react-icons/bi";
 import { IoTvOutline } from "react-icons/io5";
 
-function Navbar() {
+function Navbar({ isHomeActive, isMoviesActive, isSeriesActive }) {
   const [inputFocus, setInputFocus] = useState(false);
 
   return (
     <Container inputFocus={inputFocus}>
       <Left>
-        <img src="/assets/logos/logo.png" alt="Logo" />
+        <Link to={"/"} className={isHomeActive ? "active" : ""}>
+          <img src="/assets/logos/logo.png" alt="Logo" />
+        </Link>
       </Left>
       <Middle inputFocus={inputFocus}>
         <Search inputFocus={inputFocus}>
@@ -26,14 +29,14 @@ function Navbar() {
         </Search>
       </Middle>
       <Right>
-        <a href="">
+        <Link to={"/movies"} className={isMoviesActive ? "active" : ""}>
           <BiMovie />
           <span>Movies</span>
-        </a>
-        <a href="">
+        </Link>
+        <Link to={"/series"} className={isSeriesActive ? "active" : ""}>
           <IoTvOutline />
           <span>Series</span>
-        </a>
+        </Link>
       </Right>
     </Container>
   );
@@ -62,6 +65,16 @@ const Left = styled.div`
   align-items: center;
   flex: 1;
   height: 100%;
+
+  a {
+    width: 100%;
+    height: 100%;
+
+    &.active {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
 
   img {
     object-fit: contain;
@@ -137,8 +150,14 @@ const Right = styled.div`
       margin-left: 5px;
     }
 
+    &.active {
+      color: rgb(192, 0, 0);
+      cursor: default;
+      pointer-events: none;
+    }
+
     :hover {
-      color: rgb(230, 0, 0);
+      color: rgb(192, 0, 0);
     }
   }
 `;

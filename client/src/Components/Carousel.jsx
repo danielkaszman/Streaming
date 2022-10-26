@@ -40,7 +40,7 @@ const Container = styled.div`
 const Slide = styled(Slider)`
   width: 80%;
   height: 80%;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 
   .slick-list {
     overflow: visible;
@@ -63,7 +63,7 @@ const Wrap = styled.div`
     height: 100%;
     color: rgb(240, 240, 240);
     border: 4px solid rgba(121, 121, 121, 0.5);
-    border-radius: 50px;
+    border-radius: 40px;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 70px 50px -20px;
     cursor: pointer;
     transition: all 250ms;

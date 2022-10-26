@@ -5,6 +5,7 @@ import RegistratePage from "./Pages/RegistratePage";
 import Home from "./Pages/Home";
 import Movies from "./Pages/Movies";
 import Series from "./Pages/Series";
+import Details from "./Pages/Details";
 
 function App() {
   const [isHomeActive, setIsHomeActive] = useState(false);
@@ -37,6 +38,7 @@ function App() {
           />
         }
       />
+      <Route path="/details" element={<Details />} />
       <Route path="/registrate" element={<RegistratePage />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>

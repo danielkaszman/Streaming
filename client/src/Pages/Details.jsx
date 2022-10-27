@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Navbar from "../Components/Navbar";
 import { BsPlay, BsHeart, BsHeartFill, BsShare } from "react-icons/bs";
 import { GoPrimitiveDot } from "react-icons/go";
+import Player from "../Components/Player";
 
 function Details() {
+  const [isPlayerOpen, setIsPlayerOpen] = useState(false);
+
   return (
     <Container>
+      <Player
+        src={"test"}
+        isPlayerOpen={isPlayerOpen}
+        setIsPlayerOpen={setIsPlayerOpen}
+      />
       <Navbar />
       <Poster>
         <img src="./assets/covers/Star Wars 4.jpg" alt="" />
@@ -14,7 +22,7 @@ function Details() {
       <Content>
         <h2>Star Wars: New Hope</h2>
         <Controls>
-          <Play>
+          <Play onClick={() => setIsPlayerOpen(true)}>
             <BsPlay />
             <span>Play</span>
           </Play>
@@ -178,6 +186,9 @@ const Info = styled.div`
   margin-top: 30px;
 
   span {
+    display: flex;
+    align-items: center;
+
     color: rgba(240, 240, 240, 0.8);
     font-size: 15px;
     font-weight: 100;

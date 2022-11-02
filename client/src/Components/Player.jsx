@@ -31,10 +31,8 @@ const Container = styled.div`
   left: 0;
   bottom: 0;
 
-  background-color: ${(props) =>
-    props.isPlayerOpen ? "rgba(0, 0, 0, 0.8)" : "rgb(0, 0, 0)"};
-  backdrop-filter: ${(props) =>
-    props.isPlayerOpen ? "blur(7px)" : "blur(0px)"};
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
 
   z-index: 11;
 

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { Background } from "../Components/StyledComponents/Main_Bg_Image";
 import Navbar from "../Components/Navbar";
 import Carousel from "../Components/Carousel";
 import Filter from "../Components/Filter";
@@ -11,8 +12,9 @@ function Movies({ isMoviesActive, setIsMoviesActive }) {
   }, []);
 
   return (
-    <Container>
+    <>
       <Navbar isMoviesActive={isMoviesActive} />
+      <Background />
       <Carousel
         images={[
           <img src="/assets/posters/movies/Batman.jpg" alt="Batman poster" />,
@@ -94,13 +96,8 @@ function Movies({ isMoviesActive, setIsMoviesActive }) {
           <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
         ]}
       />
-    </Container>
+    </>
   );
 }
 
 export default Movies;
-
-const Container = styled.div`
-  background-color: rgb(49, 49, 49);
-  overflow-x: hidden;
-`;

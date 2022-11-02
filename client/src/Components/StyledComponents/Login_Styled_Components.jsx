@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   height: 100vh;
   width: 100vw;
   background-image: url("/assets/login-bg.jpg");
@@ -8,9 +12,13 @@ export const Container = styled.div`
   background-position: center;
   object-fit: cover;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  &::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const Content = styled.div`
@@ -18,6 +26,7 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: fixed;
 
   width: 400px;
   padding: 50px 50px;
@@ -27,9 +36,10 @@ export const Content = styled.div`
 `;
 
 export const Cim = styled.h2`
-  color: white;
+  color: rgb(240, 240, 240);
   font-size: 40px;
-  font-weight: 400;
+  font-weight: 700;
+  letter-spacing: 1px;
   margin-bottom: 30px;
 `;
 
@@ -42,9 +52,11 @@ export const Input = styled.input`
   margin-bottom: 20px;
   border: none;
   border-radius: 10px;
+  background-color: rgb(240, 240, 240);
 
   :focus {
-    outline-color: white;
+    background-color: rgb(240, 240, 240);
+    outline-color: rgb(240, 240, 240);
   }
 `;
 

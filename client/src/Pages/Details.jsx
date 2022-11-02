@@ -10,12 +10,12 @@ function Details() {
 
   return (
     <Container>
+      <Navbar />
       <Player
         src={"test"}
         isPlayerOpen={isPlayerOpen}
         setIsPlayerOpen={setIsPlayerOpen}
       />
-      <Navbar />
       <Poster>
         <img src="./assets/covers/Star Wars 4.jpg" alt="" />
       </Poster>

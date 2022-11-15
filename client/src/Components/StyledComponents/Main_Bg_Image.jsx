@@ -4,7 +4,7 @@ export const Background = styled.div`
   height: 100vh;
   width: 100vw;
   position: fixed;
-  background-image: url("/assets/main-bg.jpg");
+  background-image: url("/assets/bg-main-pc.jpg");
   background-position: center;
   background-repeat: no-repeat;
   object-fit: cover;

@@ -65,3 +65,5 @@ router.get("/logout", (req, res) => {
     res.send("You are not logged in!");
   }
 });
+
+module.exports = router;

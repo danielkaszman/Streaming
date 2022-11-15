@@ -3,12 +3,14 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session");
+const UserRoutes = require("./Routes/UserRoutes");
+const MovieRoutes = require("./Routes/MovieRoutes");
 
 app.use(express.json());
 app.use(
   cors({
     origin: ["http://localhost:3000"],
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
   })
 );
@@ -22,6 +24,9 @@ app.use(
     },
   })
 );
+
+app.use("/userRoutes", UserRoutes);
+app.use("/movieRoutes", MovieRoutes);
 
 mongoose.connect("mongodb://localhost:27017/streaming", () => {
   console.log("Connected to Database!");

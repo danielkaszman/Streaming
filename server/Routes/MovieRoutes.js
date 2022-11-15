@@ -36,3 +36,5 @@ router.post("/selected/:id", async (req, res) => {
   const movie = await MovieModel.findById(req.params.id);
   res.send(movie);
 });
+
+module.exports = router;

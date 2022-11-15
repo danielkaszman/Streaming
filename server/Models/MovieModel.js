@@ -5,13 +5,13 @@ const MovieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  video: {
+  videoExt: {
     type: String,
-    required: false,
+    required: true,
   },
-  cover: {
+  coverExt: {
     type: String,
-    required: false,
+    required: true,
   },
   description: {
     type: String,

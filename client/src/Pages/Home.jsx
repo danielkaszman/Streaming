@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
-import { Background } from "../Components/StyledComponents/Main_Bg_Image";
 import Navbar from "../Components/Navbar";
 import Carousel from "../Components/Carousel";
 import Content from "../Components/Content";
+import { Container } from "../Components/StyledComponents/Main_Bg_Container";
 
 function Home({ isHomeActive, setIsHomeActive }) {
   useEffect(() => {
@@ -11,9 +10,9 @@ function Home({ isHomeActive, setIsHomeActive }) {
   }, []);
 
   return (
-    <>
+    <Container>
       <Navbar isHomeActive={isHomeActive} />
-      <Background />
+
       <Carousel
         images={[
           <img src="/assets/posters/movies/Batman.jpg" alt="Batman poster" />,
@@ -79,7 +78,7 @@ function Home({ isHomeActive, setIsHomeActive }) {
           <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
         ]}
       />
-    </>
+    </Container>
   );
 }
 

@@ -7,7 +7,7 @@ const MovieSchema = new mongoose.Schema({
   },
   videoExt: {
     type: String,
-    required: true,
+    required: false,
   },
   coverExt: {
     type: String,

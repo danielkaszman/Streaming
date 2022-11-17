@@ -23,7 +23,7 @@ export default Content;
 
 const Container = styled.div`
   padding-inline: 50px;
-  margin-bottom: 70px;
+  padding-bottom: 70px;
 
   h2 {
     color: rgb(240, 240, 240);

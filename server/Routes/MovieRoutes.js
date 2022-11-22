@@ -3,22 +3,30 @@ const router = express.Router();
 const MovieModel = require("../Models/MovieModel");
 
 router.get("/all", async (req, res) => {
-  const movies = await MovieModel.find({});
+  const movies = await MovieModel.find({}).sort({ title: "ascending" });
   res.send(movies);
 });
 
 router.get("/mostLiked", async (req, res) => {
-  const movies = await MovieModel.find({}).sort({ likes: "descending" });
+  const movies = await MovieModel.find({})
+    .sort({
+      likes: "descending",
+    })
+    .limit(4);
   res.send(movies);
 });
 
 router.get("/mostWatched", async (req, res) => {
-  const movies = await MovieModel.find({}).sort({ views: "descending" });
+  const movies = await MovieModel.find({})
+    .sort({ views: "descending" })
+    .limit(4);
   res.send(movies);
 });
 
 router.get("/newest", async (req, res) => {
-  const movies = await MovieModel.find({}).sort({ release: "descending" });
+  const movies = await MovieModel.find({})
+    .sort({ release: "descending" })
+    .limit(4);
   res.send(movies);
 });
 
@@ -32,7 +40,7 @@ router.put("/view/:id", async (req, res) => {
   res.send("Watched!");
 });
 
-router.post("/selected/:id", async (req, res) => {
+router.get("/selected/:id", async (req, res) => {
   const movie = await MovieModel.findById(req.params.id);
   res.send(movie);
 });

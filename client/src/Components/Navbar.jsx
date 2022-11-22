@@ -53,7 +53,7 @@ const Container = styled.nav`
   right: 0;
   left: 0;
   height: 70px;
-  background-color: rgba(10, 10, 10, 0.9);
+  background-color: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(50, 50, 50, 0.5);
   box-shadow: rgba(0, 0, 0, 0.8) 0px 30px 30px -10px;

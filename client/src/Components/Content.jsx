@@ -1,17 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function Content({ section, covers }) {
   return (
     <Container>
       <h2>{section}</h2>
       <Grid>
-        {covers.map((cover) => (
-          <Items>
-            {cover}
-            <Layer>
-              <h3>Star Wars: New Hope</h3>
-            </Layer>
+        {covers.map((cover, index) => (
+          <Items key={index}>
+            <Link to={`details/${cover._id}`}>
+              <img src={`/assets/DB/${cover.title + cover.coverExt}`} />
+              <Layer>
+                <h3>{cover.title}</h3>
+              </Layer>
+            </Link>
           </Items>
         ))}
       </Grid>

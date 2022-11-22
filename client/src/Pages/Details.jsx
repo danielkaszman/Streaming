@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import { BsPlay, BsHeart, BsHeartFill, BsShare } from "react-icons/bs";
 import { GoPrimitiveDot } from "react-icons/go";
 import Player from "../Components/Player";
+import axios from "axios";
 
 function Details() {
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);
+  const [movie, setMovie] = useState();
+  const params = useParams();
+
+  useEffect(() => {
+    getMovie();
+  }, []);
+
+  async function getMovie() {
+    const response = await axios.get(
+      `http://localhost:3001/movieRoutes/selected/${params.id}`
+    );
+    setMovie(response.data);
+  }
 
   return (
     <Container>
@@ -16,45 +31,49 @@ function Details() {
         isPlayerOpen={isPlayerOpen}
         setIsPlayerOpen={setIsPlayerOpen}
       />
-      <Poster>
-        <img src="./assets/covers/Star Wars 4.jpg" alt="" />
-      </Poster>
-      <Content>
-        <h2>Star Wars: New Hope</h2>
-        <Controls>
-          <Play onClick={() => setIsPlayerOpen(true)}>
-            <BsPlay />
-            <span>Play</span>
-          </Play>
-          <Like>
-            <BsHeart />
-          </Like>
-          <Share>
-            <BsShare />
-          </Share>
-        </Controls>
-        <Info>
-          <span>Length: 130m</span>
-          <span>
-            <GoPrimitiveDot />
-          </span>
-          <span>Views: 52</span>
-          <span>
-            <GoPrimitiveDot />
-          </span>
-          <span>Liked by 16 people</span>
-        </Info>
-        <p>
-          The Imperial Forces -- under orders from cruel Darth Vader (David
-          Prowse) -- hold Princess Leia (Carrie Fisher) hostage, in their
-          efforts to quell the rebellion against the Galactic Empire. Luke
-          Skywalker (Mark Hamill) and Han Solo (Harrison Ford), captain of the
-          Millennium Falcon, work together with the companionable droid duo
-          R2-D2 (Kenny Baker) and C-3PO (Anthony Daniels) to rescue the
-          beautiful princess, help the Rebel Alliance, and restore freedom and
-          justice to the Galaxy.
-        </p>
-      </Content>
+      {movie && (
+        <>
+          <Poster>
+            <img src={`/assets/DB/${movie.title + movie.coverExt}`} />
+          </Poster>
+          <Content>
+            <h2>{movie.title}</h2>
+            <Controls>
+              <Play onClick={() => setIsPlayerOpen(true)}>
+                <BsPlay />
+                <span>Play</span>
+              </Play>
+              <Like>
+                <BsHeart />
+              </Like>
+              <Share>
+                <BsShare />
+              </Share>
+            </Controls>
+            <Info>
+              <span>Length: 130m</span>
+              <span>
+                <GoPrimitiveDot />
+              </span>
+              <span>Views: {movie.views}</span>
+              <span>
+                <GoPrimitiveDot />
+              </span>
+              <span>Liked by {movie.likes} people</span>
+            </Info>
+            <p>
+              The Imperial Forces -- under orders from cruel Darth Vader (David
+              Prowse) -- hold Princess Leia (Carrie Fisher) hostage, in their
+              efforts to quell the rebellion against the Galactic Empire. Luke
+              Skywalker (Mark Hamill) and Han Solo (Harrison Ford), captain of
+              the Millennium Falcon, work together with the companionable droid
+              duo R2-D2 (Kenny Baker) and C-3PO (Anthony Daniels) to rescue the
+              beautiful princess, help the Rebel Alliance, and restore freedom
+              and justice to the Galaxy.
+            </p>
+          </Content>
+        </>
+      )}
     </Container>
   );
 }

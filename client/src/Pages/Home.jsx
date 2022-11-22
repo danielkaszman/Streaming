@@ -1,13 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Navbar from "../Components/Navbar";
 import Carousel from "../Components/Carousel";
 import Content from "../Components/Content";
 import { Container } from "../Components/StyledComponents/Main_Bg_Container";
 
 function Home({ isHomeActive, setIsHomeActive }) {
+  const [allMovies, setAllMovies] = useState();
+  const [mostWatched, setMostWatched] = useState();
+  const [popular, setPopular] = useState();
+  const [newRelease, setNewRelease] = useState();
+
   useEffect(() => {
     setIsHomeActive(true);
+
+    getData();
   }, []);
+
+  async function getData() {
+    const all = await axios.get("http://localhost:3001/movieRoutes/all");
+    setAllMovies(all.data);
+
+    const mostWatched = await axios.get(
+      "http://localhost:3001/movieRoutes/mostWatched"
+    );
+    setMostWatched(mostWatched.data);
+
+    const mostLiked = await axios.get(
+      "http://localhost:3001/movieRoutes/mostLiked"
+    );
+    setPopular(mostLiked.data);
+
+    const newRelease = await axios.get(
+      "http://localhost:3001/movieRoutes/newest"
+    );
+    setNewRelease(newRelease.data);
+  }
 
   return (
     <Container>
@@ -38,46 +66,14 @@ function Home({ isHomeActive, setIsHomeActive }) {
           />,
         ]}
       />
-      <Content
-        section={"New Releases"}
-        covers={[
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-        ]}
-      />
-      <Content
-        section={"Most Watched"}
-        covers={[
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-        ]}
-      />
-      <Content
-        section={"Popular"}
-        covers={[
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-        ]}
-      />
-      <Content
-        section={"All"}
-        covers={[
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-        ]}
-      />
+
+      {newRelease && <Content section={"New Releases"} covers={newRelease} />}
+
+      {mostWatched && <Content section={"Most Watched"} covers={mostWatched} />}
+
+      {popular && <Content section={"Popular"} covers={popular} />}
+
+      {allMovies && <Content section={"All"} covers={allMovies} />}
     </Container>
   );
 }

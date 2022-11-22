@@ -19,8 +19,8 @@ function Carousel({ images }) {
   return (
     <Container>
       <Slide {...settings}>
-        {images.map((image) => (
-          <Wrap>{image}</Wrap>
+        {images.map((image, index) => (
+          <Wrap key={index}>{image}</Wrap>
         ))}
       </Slide>
     </Container>

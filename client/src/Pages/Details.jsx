@@ -27,7 +27,7 @@ function Details() {
     <Container>
       <Navbar />
       <Player
-        src={"test"}
+        id={params.id}
         isPlayerOpen={isPlayerOpen}
         setIsPlayerOpen={setIsPlayerOpen}
       />

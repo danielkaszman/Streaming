@@ -1,17 +1,35 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { VscChromeClose } from "react-icons/vsc";
 import Bounce from "react-reveal/Bounce";
+import { useEffect } from "react";
 
-function Player({ src, isPlayerOpen, setIsPlayerOpen }) {
+function Player({ id, isPlayerOpen, setIsPlayerOpen }) {
+  const videoRef = useRef();
+
+  useEffect(() => {
+    if (isPlayerOpen) {
+      videoRef.current.play();
+    }
+  }, [isPlayerOpen]);
+
+  function closeModal() {
+    videoRef.current.pause();
+    setIsPlayerOpen(false);
+  }
+
   return (
     <Container isPlayerOpen={isPlayerOpen}>
       <Bounce top>
         <Content>
           <Close>
-            <VscChromeClose onClick={() => setIsPlayerOpen(false)} />
+            <VscChromeClose onClick={closeModal} />
           </Close>
-          <video src={src} controls />
+          <video
+            ref={videoRef}
+            src={`http://localhost:3001/movieRoutes/stream/${id}`}
+            controls
+          />
         </Content>
       </Bounce>
     </Container>

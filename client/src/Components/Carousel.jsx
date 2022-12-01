@@ -34,7 +34,13 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 120px;
-  padding-bottom: 70px;
+  padding-bottom: 80px;
+  overflow-x: hidden;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 100px;
+    padding-bottom: 70px;
+  }
 `;
 
 const Slide = styled(Slider)`
@@ -52,6 +58,10 @@ const Slide = styled(Slider)`
 
   li.slick-active button::before {
     color: white;
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
   }
 `;
 
@@ -71,6 +81,14 @@ const Wrap = styled.div`
     :hover {
       border: 4px solid rgb(240, 240, 240);
       transform: scale(1.04);
+    }
+
+    @media screen and (max-width: 1200px) {
+      border-radius: 20px;
+    }
+
+    @media screen and (max-width: 500px) {
+      border-radius: 10px;
     }
   }
 `;

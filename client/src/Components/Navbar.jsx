@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
-import { BiMovie } from "react-icons/bi";
-import { IoTvOutline } from "react-icons/io5";
+import { IoTvOutline, IoMenuOutline } from "react-icons/io5";
+import Sidebar from "./Sidebar";
 
-function Navbar({ isHomeActive, isMoviesActive, isSeriesActive }) {
+function Navbar({ isHomeActive, isSeriesActive }) {
   const [inputFocus, setInputFocus] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <Container inputFocus={inputFocus}>
@@ -29,15 +30,17 @@ function Navbar({ isHomeActive, isMoviesActive, isSeriesActive }) {
         </Search>
       </Middle>
       <Right>
-        <Link to={"/movies"} className={isMoviesActive ? "active" : ""}>
-          <BiMovie />
-          <span>Movies</span>
-        </Link>
         <Link to={"/series"} className={isSeriesActive ? "active" : ""}>
           <IoTvOutline />
           <span>Series</span>
         </Link>
+
+        <Hamburger>
+          <IoMenuOutline onClick={() => setModalOpen(true)} />
+        </Hamburger>
       </Right>
+
+      <Sidebar modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </Container>
   );
 }
@@ -64,8 +67,8 @@ const Left = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
   height: 100%;
+  width: 200px;
 
   a {
     width: 100%;
@@ -75,12 +78,12 @@ const Left = styled.div`
       cursor: default;
       pointer-events: none;
     }
-  }
 
-  img {
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
+    img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
   }
 `;
 
@@ -88,7 +91,7 @@ const Middle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 2;
+  flex: 1;
 `;
 
 const Icon = styled.div`
@@ -128,13 +131,17 @@ const Search = styled.div`
       outline: none;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Right = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
+  width: 200px;
 
   a {
     display: flex;
@@ -160,5 +167,31 @@ const Right = styled.div`
     :hover {
       color: rgb(192, 0, 0);
     }
+
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    justify-content: flex-end;
+    width: auto;
+  }
+`;
+
+const Hamburger = styled.div`
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+
+  :hover {
+    cursor: pointer;
+    color: rgb(192, 0, 0);
+  }
+
+  @media screen and (max-width: 1200px) {
+    display: flex;
   }
 `;

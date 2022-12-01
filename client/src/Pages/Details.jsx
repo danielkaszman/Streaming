@@ -23,6 +23,18 @@ function Details() {
     setMovie(response.data);
   }
 
+  async function increaseViewCount(id) {
+    await axios.put(`http://localhost:3001/movieRoutes/view/${id}`);
+    getMovie();
+  }
+
+  /*
+  async function increaseLikes(id) {
+    await axios.put(`http://localhost:3001/movieRoutes/like/${id}`);
+    getMovie();
+  }
+  */
+
   return (
     <Container>
       <Navbar />
@@ -39,11 +51,20 @@ function Details() {
           <Content>
             <h2>{movie.title}</h2>
             <Controls>
-              <Play onClick={() => setIsPlayerOpen(true)}>
+              <Play
+                onClick={() => {
+                  setIsPlayerOpen(true);
+                  increaseViewCount(movie._id);
+                }}
+              >
                 <BsPlay />
                 <span>Play</span>
               </Play>
-              <Like>
+              <Like
+                onClick={() => {
+                  //increaseLikes(movie._id);
+                }}
+              >
                 <BsHeart />
               </Like>
               <Share>
@@ -51,7 +72,7 @@ function Details() {
               </Share>
             </Controls>
             <Info>
-              <span>Length: 130m</span>
+              <span>Length: ???</span>
               <span>
                 <GoPrimitiveDot />
               </span>

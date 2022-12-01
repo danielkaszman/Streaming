@@ -18,7 +18,25 @@ const Container = styled.div`
   grid-template-columns: repeat(5, minmax(0, 1fr));
   grid-gap: 50px;
   padding-inline: 50px;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
+
+  @media screen and (max-width: 1200px) {
+    grid-gap: 30px;
+    padding-bottom: 70px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-gap: 20px;
+    padding-inline: 30px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media screen and (max-width: 500px) {
+    grid-gap: 20px;
+    padding-inline: 30px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 `;
 
 const Logo = styled.div`
@@ -39,5 +57,9 @@ const Logo = styled.div`
   :hover {
     border: 4px solid rgb(240, 240, 240);
     transform: scale(1.05);
+  }
+
+  @media screen and (max-width: 500px) {
+    border-radius: 10px;
   }
 `;

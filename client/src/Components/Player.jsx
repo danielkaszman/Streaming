@@ -1,8 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { VscChromeClose } from "react-icons/vsc";
 import Bounce from "react-reveal/Bounce";
-import { useEffect } from "react";
 
 function Player({ id, isPlayerOpen, setIsPlayerOpen }) {
   const videoRef = useRef();
@@ -50,7 +49,7 @@ const Container = styled.div`
   bottom: 0;
 
   background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
 
   z-index: 11;
 
@@ -61,9 +60,13 @@ const Content = styled.div`
   width: 60vw;
 
   video {
-    border-radius: 30px;
+    border-radius: 20px;
     height: 100%;
     width: 100%;
+
+    :focus {
+      outline: transparent;
+    }
   }
 `;
 

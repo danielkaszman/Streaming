@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { VscChromeClose } from "react-icons/vsc";
+import Search from "./Search";
 
 function Sidebar({ modalOpen, setModalOpen }) {
   return (
@@ -8,6 +9,10 @@ function Sidebar({ modalOpen, setModalOpen }) {
       <Close>
         <VscChromeClose onClick={() => setModalOpen(false)} />
       </Close>
+
+      <SearchBar>
+        <Search />
+      </SearchBar>
     </Container>
   );
 }
@@ -15,7 +20,7 @@ function Sidebar({ modalOpen, setModalOpen }) {
 export default Sidebar;
 
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   right: 0px;
   top: 0;
   height: 100vh;
@@ -24,8 +29,9 @@ const Container = styled.div`
     props.modalOpen
       ? "transform: translate(0px)"
       : "transform: translate(300px)"};
+  background-color: rgba(10, 10, 10, 0.5);
+  backdrop-filter: blur(10px);
   transition: all 250ms;
-  background-color: rgba(10, 10, 10, 1);
 `;
 
 const Close = styled.div`
@@ -39,10 +45,26 @@ const Close = styled.div`
   svg {
     color: white;
     font-size: 30px;
+    transition: all 250ms;
 
     :hover {
-      font-size: 40px;
+      transform: scale(1.2);
       cursor: pointer;
+      color: rgb(192, 0, 0);
+    }
+  }
+`;
+
+const SearchBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px 0px;
+
+  div {
+    @media screen and (min-width: 769px) {
+      display: none;
     }
   }
 `;

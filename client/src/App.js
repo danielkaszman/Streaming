@@ -11,26 +11,31 @@ function App() {
   const [isSeriesActive, setIsSeriesActive] = useState(false);
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Home isHomeActive={isHomeActive} setIsHomeActive={setIsHomeActive} />
-        }
-      />
-      <Route
-        path="/series"
-        element={
-          <Series
-            isSeriesActive={isSeriesActive}
-            setIsSeriesActive={setIsSeriesActive}
-          />
-        }
-      />
-      <Route path="/details/:id" element={<Details />} />
-      <Route path="/registrate" element={<RegistratePage />} />
-      <Route path="/login" element={<LoginPage />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              isHomeActive={isHomeActive}
+              setIsHomeActive={setIsHomeActive}
+            />
+          }
+        />
+        <Route
+          path="/series"
+          element={
+            <Series
+              isSeriesActive={isSeriesActive}
+              setIsSeriesActive={setIsSeriesActive}
+            />
+          }
+        />
+        <Route path="/details/:id" element={<Details />} />
+        <Route path="/registrate" element={<RegistratePage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </>
   );
 }
 

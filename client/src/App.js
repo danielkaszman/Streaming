@@ -5,20 +5,30 @@ import RegistratePage from "./Pages/RegistratePage";
 import Home from "./Pages/Home";
 import Series from "./Pages/Series";
 import Details from "./Pages/Details";
+import Navbar from "./Components/Navbar";
+import Sidebar from "./Components/Sidebar";
 
 function App() {
-  const [isHomeActive, setIsHomeActive] = useState(false);
+  const [isHomeActive, setIsHomeActive] = useState(true);
   const [isSeriesActive, setIsSeriesActive] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
+      <Navbar
+        isHomeActive={isHomeActive}
+        isSeriesActive={isSeriesActive}
+        setModalOpen={setModalOpen}
+      />
+      <Sidebar modalOpen={modalOpen} setModalOpen={setModalOpen} />
+
       <Routes>
         <Route
           path="/"
           element={
             <Home
-              isHomeActive={isHomeActive}
               setIsHomeActive={setIsHomeActive}
+              setIsSeriesActive={setIsSeriesActive}
             />
           }
         />
@@ -26,8 +36,8 @@ function App() {
           path="/series"
           element={
             <Series
-              isSeriesActive={isSeriesActive}
               setIsSeriesActive={setIsSeriesActive}
+              setIsHomeActive={setIsHomeActive}
             />
           }
         />

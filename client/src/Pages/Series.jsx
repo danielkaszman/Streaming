@@ -1,19 +1,17 @@
 import React, { useEffect } from "react";
-import Navbar from "../Components/Navbar";
 import Carousel from "../Components/Carousel";
 import Filter from "../Components/Filter";
 import Content from "../Components/Content";
 import { Container } from "../Components/StyledComponents/Main_Bg_Container";
 
-function Series({ isSeriesActive, setIsSeriesActive }) {
+function Series({ setIsSeriesActive, setIsHomeActive }) {
   useEffect(() => {
     setIsSeriesActive(true);
+    setIsHomeActive(false);
   }, []);
 
   return (
     <Container>
-      <Navbar isSeriesActive={isSeriesActive} />
-
       <Carousel
         images={[
           <img

@@ -29,8 +29,14 @@ const Container = styled.div`
     props.modalOpen
       ? "transform: translate(0px)"
       : "transform: translate(300px)"};
-  background-color: rgba(10, 10, 10, 0.5);
-  backdrop-filter: blur(10px);
+  background-color: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(15px);
+  border-left: 1px solid rgba(50, 50, 50, 0.5);
+  ${(props) =>
+    props.modalOpen
+      ? "box-shadow: rgba(0, 0, 0, 0.8) -20px 0px 30px 0px;"
+      : ""};
+  z-index: 11;
   transition: all 250ms;
 `;
 

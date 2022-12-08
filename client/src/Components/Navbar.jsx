@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { IoTvOutline, IoMenuOutline } from "react-icons/io5";
-import Sidebar from "./Sidebar";
 import Search from "./Search";
 
-function Navbar({ isHomeActive, isSeriesActive }) {
-  const [modalOpen, setModalOpen] = useState(false);
-
+function Navbar({ isHomeActive, isSeriesActive, setModalOpen }) {
   return (
     <Container>
       <Left>
@@ -30,8 +27,6 @@ function Navbar({ isHomeActive, isSeriesActive }) {
           <IoMenuOutline onClick={() => setModalOpen(true)} />
         </Hamburger>
       </Right>
-
-      <Sidebar modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </Container>
   );
 }
@@ -48,7 +43,7 @@ const Container = styled.nav`
   left: 0;
   height: 70px;
   background-color: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(50, 50, 50, 0.5);
   box-shadow: rgba(0, 0, 0, 0.8) 0px 30px 30px -10px;
   z-index: 10;

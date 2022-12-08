@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../Components/Navbar";
 import Carousel from "../Components/Carousel";
 import Filter from "../Components/Filter";
 import Content from "../Components/Content";
 import { Container } from "../Components/StyledComponents/Main_Bg_Container";
 
-function Home({ isHomeActive, setIsHomeActive }) {
+function Home({ setIsHomeActive, setIsSeriesActive }) {
   const [allMovies, setAllMovies] = useState();
   const [mostWatched, setMostWatched] = useState();
   const [popular, setPopular] = useState();
@@ -14,6 +13,7 @@ function Home({ isHomeActive, setIsHomeActive }) {
 
   useEffect(() => {
     setIsHomeActive(true);
+    setIsSeriesActive(false);
 
     getData();
   }, []);
@@ -40,8 +40,6 @@ function Home({ isHomeActive, setIsHomeActive }) {
 
   return (
     <Container>
-      <Navbar isHomeActive={isHomeActive} />
-
       <Carousel
         images={[
           <img src="/assets/posters/movies/Batman.jpg" alt="Batman poster" />,

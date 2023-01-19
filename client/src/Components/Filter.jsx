@@ -4,8 +4,8 @@ import styled from "styled-components";
 function Filter({ images }) {
   return (
     <Container>
-      {images.map((image) => (
-        <Logo>{image}</Logo>
+      {images.map((image, index) => (
+        <Logo key={index}>{image}</Logo>
       ))}
     </Container>
   );

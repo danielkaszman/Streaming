@@ -4,7 +4,7 @@ const UserModel = require("../Models/UserModel");
 const bcrypt = require("bcrypt");
 
 router.post("/registrate", async (req, res) => {
-  const foundUser = await UserModel.findOne({ email: req.body.email });
+  let foundUser = await UserModel.findOne({ email: req.body.email });
 
   if (foundUser) {
     res.send("User with this email already exists!");
@@ -21,13 +21,18 @@ router.post("/registrate", async (req, res) => {
 
   await newUser.save();
 
-  foundUser = await UserModel.findOne({ email: req.body.email, password: 0 });
+  foundUser = await UserModel.findOne(
+    { email: req.body.email },
+    { password: 0 }
+  );
 
   req.session.user = foundUser;
+
+  res.sendStatus(200);
 });
 
 router.post("/login", async (req, res) => {
-  const foundUser = await UserModel.findOne({ email: req.body.email });
+  let foundUser = await UserModel.findOne({ email: req.body.email });
 
   if (!foundUser) {
     res.send("Wrong email or password!");
@@ -44,16 +49,22 @@ router.post("/login", async (req, res) => {
     return;
   }
 
-  foundUser = await UserModel.findOne({ email: req.body.email, password: 0 });
+  foundUser = await UserModel.findOne(
+    { email: req.body.email },
+    { password: 0 }
+  );
 
   req.session.user = foundUser;
+
+  res.sendStatus(200);
 });
 
 router.get("/loggedIn", (req, res) => {
+  console.log(req.session.user);
   if (req.session.user) {
-    res.send(true);
+    res.send({ loggedIn: true, user: req.session.user });
   } else {
-    res.send(false);
+    res.send({ loggedIn: false });
   }
 });
 

@@ -4,9 +4,9 @@ import Filter from "../Components/Filter";
 import Content from "../Components/Content";
 import { Container } from "../Components/StyledComponents/Main_Bg_Container";
 
-function Series({ setIsSeriesActive, setIsHomeActive }) {
+function Music({ setIsMusicActive, setIsHomeActive }) {
   useEffect(() => {
-    setIsSeriesActive(true);
+    setIsMusicActive(true);
     setIsHomeActive(false);
   }, []);
 
@@ -102,4 +102,4 @@ function Series({ setIsSeriesActive, setIsHomeActive }) {
   );
 }
 
-export default Series;
+export default Music;

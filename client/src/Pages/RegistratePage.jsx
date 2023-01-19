@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -9,12 +9,44 @@ import {
   Button,
   Message,
 } from "../Components/StyledComponents/Login_Styled_Components";
+import { userContext } from "../Context/userContext";
+import axios from "axios";
 
 function RegistratePage() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
+  const [msg, setMsg] = useState();
+
+  const { setUser } = useContext(userContext);
+
+  useEffect(() => {
+    checkLogin();
+  }, []);
+
+  function registrate() {
+    axios
+      .post("http://localhost:3001/userRoutes/registrate", {
+        name,
+        email,
+        password,
+      })
+      .then((response) => {
+        setMsg(response.data);
+        checkLogin();
+      });
+  }
+
+  function checkLogin() {
+    axios.get("http://localhost:3001/userRoutes/loggedIn").then((response) => {
+      if (response.data.loggedIn === true) {
+        setUser(response.data.user);
+      } else {
+        setUser(null);
+      }
+    });
+  }
 
   return (
     <Container>
@@ -48,7 +80,7 @@ function RegistratePage() {
             setRepeatPassword(e.target.value);
           }}
         />
-        <Warning>User already exists!</Warning>
+        <Warning>{msg}</Warning>
         <Button
           disabled={
             !name ||
@@ -57,6 +89,7 @@ function RegistratePage() {
             !repeatPassword ||
             password !== repeatPassword
           }
+          onClick={registrate}
         >
           Registrate
         </Button>

@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { IoTvOutline, IoMenuOutline } from "react-icons/io5";
+import { IoTvOutline, IoMenuOutline, IoLogOutOutline } from "react-icons/io5";
 import Search from "./Search";
+import axios from "axios";
+import { userContext } from "../Context/userContext";
 
-function Navbar({ isHomeActive, isSeriesActive, setModalOpen }) {
+function Navbar({ isHomeActive, isMusicActive, setModalOpen }) {
+  const { setUser } = useContext(userContext);
+
+  function logout() {
+    axios.get("http://localhost:3001/userRoutes/logout").then(() => {
+      checkLogin();
+    });
+  }
+
+  function checkLogin() {
+    axios.get("http://localhost:3001/userRoutes/loggedIn").then(() => {
+      setUser(null);
+    });
+  }
+
   return (
     <Container>
       <Left>
@@ -18,14 +34,18 @@ function Navbar({ isHomeActive, isSeriesActive, setModalOpen }) {
       </Middle>
 
       <Right>
-        <Link to={"/series"} className={isSeriesActive ? "active" : ""}>
+        <Link to={"/music"} className={isMusicActive ? "active" : ""}>
           <IoTvOutline />
-          <span>Series</span>
+          <span>Music</span>
         </Link>
 
         <Hamburger>
           <IoMenuOutline onClick={() => setModalOpen(true)} />
         </Hamburger>
+
+        <Logout>
+          <IoLogOutOutline onClick={logout} />
+        </Logout>
       </Right>
     </Container>
   );
@@ -88,7 +108,7 @@ const Middle = styled.div`
 
 const Right = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 200px;
 
@@ -132,7 +152,7 @@ const Hamburger = styled.div`
   display: none;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: rgb(240, 240, 240);
   font-size: 30px;
   transition: all 250ms;
 
@@ -143,5 +163,19 @@ const Hamburger = styled.div`
 
   @media screen and (max-width: 1200px) {
     display: flex;
+  }
+`;
+
+const Logout = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  font-size: 30px;
+  transition: all 250ms;
+
+  :hover {
+    cursor: pointer;
+    color: rgb(192, 0, 0);
   }
 `;

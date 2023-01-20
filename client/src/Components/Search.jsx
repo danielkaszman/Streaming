@@ -24,6 +24,7 @@ export default Search;
 
 const Container = styled.div`
   display: flex;
+  flex: 0.9;
   align-items: center;
 
   padding: 6px 6px;
@@ -31,7 +32,6 @@ const Container = styled.div`
   border-radius: 10px;
   border: 1px solid
     ${(props) => (props.inputFocus ? "rgb(240,240,240)" : "rgb(49, 49, 49)")};
-  width: 80%;
   transition: all 250ms;
 
   input {

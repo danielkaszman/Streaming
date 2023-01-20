@@ -5,7 +5,7 @@ import Filter from "../Components/Filter";
 import Content from "../Components/Content";
 import { Container } from "../Components/StyledComponents/Main_Bg_Container";
 
-function Home({ setIsHomeActive, setIsMusicActive }) {
+function Home({ setIsHomeActive, setIsMusicActive, setIsProfileActive }) {
   const [allMovies, setAllMovies] = useState();
   const [mostWatched, setMostWatched] = useState();
   const [popular, setPopular] = useState();
@@ -14,6 +14,7 @@ function Home({ setIsHomeActive, setIsMusicActive }) {
   useEffect(() => {
     setIsHomeActive(true);
     setIsMusicActive(false);
+    setIsProfileActive(false);
 
     getData();
   }, []);

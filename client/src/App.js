@@ -9,12 +9,14 @@ import Navbar from "./Components/Navbar";
 import Sidebar from "./Components/Sidebar";
 import { userContext } from "./Context/userContext";
 import axios from "axios";
+import Profile from "./Pages/Profile";
 
 function App() {
   axios.defaults.withCredentials = true;
 
   const [isHomeActive, setIsHomeActive] = useState(true);
   const [isMusicActive, setIsMusicActive] = useState(false);
+  const [isProfileActive, setIsProfileActive] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const [user, setUser] = useState(null);
@@ -25,6 +27,7 @@ function App() {
         <Navbar
           isHomeActive={isHomeActive}
           isMusicActive={isMusicActive}
+          isProfileActive={isProfileActive}
           setModalOpen={setModalOpen}
         />
       )}
@@ -38,12 +41,14 @@ function App() {
               <Home
                 setIsHomeActive={setIsHomeActive}
                 setIsMusicActive={setIsMusicActive}
+                setIsProfileActive={setIsProfileActive}
               />
             ) : (
               <Navigate to="/login" />
             )
           }
         />
+
         <Route
           path="/music"
           element={
@@ -51,20 +56,39 @@ function App() {
               <Music
                 setIsMusicActive={setIsMusicActive}
                 setIsHomeActive={setIsHomeActive}
+                setIsProfileActive={setIsProfileActive}
               />
             ) : (
               <Navigate to="/login" />
             )
           }
         />
+
+        <Route
+          path="/profile"
+          element={
+            user ? (
+              <Profile
+                setIsMusicActive={setIsMusicActive}
+                setIsHomeActive={setIsHomeActive}
+                setIsProfileActive={setIsProfileActive}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
         <Route
           path="/details/:id"
           element={user ? <Details /> : <Navigate to="/login" />}
         />
+
         <Route
           path="/registrate"
           element={user ? <Navigate to="/" /> : <RegistratePage />}
         />
+
         <Route
           path="/login"
           element={user ? <Navigate to="/" /> : <LoginPage />}

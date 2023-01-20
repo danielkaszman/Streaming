@@ -4,10 +4,11 @@ import Filter from "../Components/Filter";
 import Content from "../Components/Content";
 import { Container } from "../Components/StyledComponents/Main_Bg_Container";
 
-function Music({ setIsMusicActive, setIsHomeActive }) {
+function Music({ setIsMusicActive, setIsHomeActive, setIsProfileActive }) {
   useEffect(() => {
     setIsMusicActive(true);
     setIsHomeActive(false);
+    setIsProfileActive(false);
   }, []);
 
   return (

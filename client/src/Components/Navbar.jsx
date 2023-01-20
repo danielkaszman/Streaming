@@ -2,11 +2,17 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { IoTvOutline, IoMenuOutline, IoLogOutOutline } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
 import Search from "./Search";
 import axios from "axios";
 import { userContext } from "../Context/userContext";
 
-function Navbar({ isHomeActive, isMusicActive, setModalOpen }) {
+function Navbar({
+  isHomeActive,
+  isMusicActive,
+  isProfileActive,
+  setModalOpen,
+}) {
   const { setUser } = useContext(userContext);
 
   function logout() {
@@ -39,13 +45,18 @@ function Navbar({ isHomeActive, isMusicActive, setModalOpen }) {
           <span>Music</span>
         </Link>
 
-        <Hamburger>
-          <IoMenuOutline onClick={() => setModalOpen(true)} />
-        </Hamburger>
+        <Link to={"/profile"} className={isProfileActive ? "active" : ""}>
+          <CgProfile />
+          <span>Profile</span>
+        </Link>
 
         <Logout>
           <IoLogOutOutline onClick={logout} />
         </Logout>
+
+        <Hamburger>
+          <IoMenuOutline onClick={() => setModalOpen(true)} />
+        </Hamburger>
       </Right>
     </Container>
   );
@@ -110,14 +121,13 @@ const Right = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 200px;
 
   a {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    margin-inline: 20px;
+    margin-right: 20px;
     font-weight: 300;
     font-size: 20px;
     color: rgb(240, 240, 240);
@@ -172,6 +182,7 @@ const Logout = styled.div`
   justify-content: center;
   color: rgb(240, 240, 240);
   font-size: 30px;
+  margin-left: 20px;
   transition: all 250ms;
 
   :hover {

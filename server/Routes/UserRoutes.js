@@ -60,7 +60,6 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/loggedIn", (req, res) => {
-  console.log(req.session.user);
   if (req.session.user) {
     res.send({ loggedIn: true, user: req.session.user });
   } else {
@@ -75,6 +74,55 @@ router.get("/logout", (req, res) => {
   } else {
     res.send("You are not logged in!");
   }
+});
+
+router.put("/changeName", async (req, res) => {
+  await UserModel.findOneAndUpdate({
+    email: req.body.email,
+    name: req.body.newName,
+  });
+
+  const updatedUser = await UserModel.findOne(
+    { email: req.body.email },
+    { password: 0 }
+  );
+  req.session.user = updatedUser;
+
+  res.send("Name updated!");
+});
+
+router.put("/changeEmail", async (req, res) => {
+  await UserModel.findOneAndUpdate({
+    email: req.body.email,
+    email: req.body.newEmail,
+  });
+
+  const updatedUser = await UserModel.findOne(
+    { email: req.body.newEmail },
+    { password: 0 }
+  );
+
+  req.session.user = updatedUser;
+
+  res.send("Email updated!");
+});
+
+router.put("/changePwd", async (req, res) => {
+  const hashedPassword = await bcrypt.hash(req.body.newPwd, 10);
+
+  await UserModel.findOneAndUpdate({
+    email: req.body.email,
+    password: hashedPassword,
+  });
+
+  const updatedUser = await UserModel.findOne(
+    { email: req.body.email },
+    { password: 0 }
+  );
+
+  req.session.user = updatedUser;
+
+  res.send("Password updated!");
 });
 
 module.exports = router;

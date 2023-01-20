@@ -35,7 +35,6 @@ function LoginPage() {
   function checkLogin() {
     axios.get("http://localhost:3001/userRoutes/loggedIn").then((response) => {
       if (response.data.loggedIn === true) {
-        console.log(response.data.user);
         setUser(response.data.user);
       } else {
         setUser(null);

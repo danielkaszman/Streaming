@@ -10,7 +10,9 @@ function Content({ section, covers }) {
         {covers.map((cover, index) => (
           <Items key={index}>
             <Link to={`details/${cover._id}`}>
-              <img src={`/assets/DB/${cover.title + cover.coverExt}`} />
+              <img
+                src={`/assets/DB/video img/${cover.title + cover.coverExt}`}
+              />
               <Layer>
                 <h3>{cover.title}</h3>
               </Layer>

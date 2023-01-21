@@ -4,16 +4,16 @@ import { VscChromeClose } from "react-icons/vsc";
 import Bounce from "react-reveal/Bounce";
 
 function Player({ id, isPlayerOpen, setIsPlayerOpen }) {
-  const videoRef = useRef();
+  const modalRef = useRef();
 
   useEffect(() => {
     if (isPlayerOpen) {
-      videoRef.current.play();
+      modalRef.current.play();
     }
   }, [isPlayerOpen]);
 
   function closeModal() {
-    videoRef.current.pause();
+    modalRef.current.pause();
     setIsPlayerOpen(false);
   }
 
@@ -25,7 +25,7 @@ function Player({ id, isPlayerOpen, setIsPlayerOpen }) {
             <VscChromeClose onClick={closeModal} />
           </Close>
           <video
-            ref={videoRef}
+            ref={modalRef}
             src={`http://localhost:3001/movieRoutes/stream/${id}`}
             controls
           />

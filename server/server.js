@@ -5,6 +5,7 @@ const cors = require("cors");
 const session = require("express-session");
 const UserRoutes = require("./Routes/UserRoutes");
 const MovieRoutes = require("./Routes/MovieRoutes");
+const MusicRoutes = require("./Routes/MusicRoutes");
 
 app.use(express.json());
 app.use(
@@ -27,6 +28,7 @@ app.use(
 
 app.use("/userRoutes", UserRoutes);
 app.use("/movieRoutes", MovieRoutes);
+app.use("/musicRoutes", MusicRoutes);
 
 mongoose.connect("mongodb://localhost:27017/streaming", () => {
   console.log("Connected to Database!");

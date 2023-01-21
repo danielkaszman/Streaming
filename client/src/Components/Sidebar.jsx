@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { VscChromeClose } from "react-icons/vsc";
 import Search from "./Search";
+import Logout from "./Logout";
 
 function Sidebar({ modalOpen, setModalOpen }) {
   return (
@@ -13,6 +14,10 @@ function Sidebar({ modalOpen, setModalOpen }) {
       <SearchBar>
         <Search />
       </SearchBar>
+
+      <LogoutBar>
+        <Logout span={true} />
+      </LogoutBar>
     </Container>
   );
 }
@@ -73,4 +78,8 @@ const SearchBar = styled.div`
       display: none;
     }
   }
+`;
+
+const LogoutBar = styled.div`
+  display: flex;
 `;

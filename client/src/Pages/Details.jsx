@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import Navbar from "../Components/Navbar";
 import { BsPlay, BsHeart, BsHeartFill, BsShare } from "react-icons/bs";
 import { GoPrimitiveDot } from "react-icons/go";
 import Player from "../Components/Player";
 import axios from "axios";
 
-function Details() {
+function Details({ setIsHomeActive }) {
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);
   const [movie, setMovie] = useState();
   const params = useParams();
 
   useEffect(() => {
+    setIsHomeActive(false);
+
     getMovie();
   }, []);
 
@@ -37,7 +38,6 @@ function Details() {
 
   return (
     <Container>
-      <Navbar />
       <Player
         id={params.id}
         isPlayerOpen={isPlayerOpen}
@@ -46,7 +46,7 @@ function Details() {
       {movie && (
         <>
           <Poster>
-            <img src={`/assets/DB/${movie.title + movie.coverExt}`} />
+            <img src={`/assets/DB/video img/${movie.title + movie.coverExt}`} />
           </Poster>
           <Content>
             <h2>{movie.title}</h2>
@@ -73,13 +73,13 @@ function Details() {
             </Controls>
             <Info>
               <span>Length: ???</span>
-              <span>
-                <GoPrimitiveDot />
-              </span>
+
+              <GoPrimitiveDot />
+
               <span>Views: {movie.views}</span>
-              <span>
-                <GoPrimitiveDot />
-              </span>
+
+              <GoPrimitiveDot />
+
               <span>Liked by {movie.likes} people</span>
             </Info>
             <p>
@@ -233,6 +233,13 @@ const Info = styled.div`
     font-size: 15px;
     font-weight: 100;
     letter-spacing: 1px;
-    margin-right: 10px;
+  }
+
+  svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(240, 240, 240, 0.8);
+    margin-inline: 10px;
   }
 `;

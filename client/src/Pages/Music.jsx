@@ -1,15 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "../Components/Carousel";
-import Filter from "../Components/Filter";
-import Content from "../Components/Content";
+import MusicContent from "../Components/MusicContent";
 import { Container } from "../Components/StyledComponents/Main_Bg_Container";
+import axios from "axios";
 
 function Music({ setIsMusicActive, setIsHomeActive, setIsProfileActive }) {
+  const [allMusic, setAllMusic] = useState();
+  const [mostListened, setMostListened] = useState();
+  const [popular, setPopular] = useState();
+  const [newRelease, setNewRelease] = useState();
+
   useEffect(() => {
     setIsMusicActive(true);
     setIsHomeActive(false);
     setIsProfileActive(false);
+
+    getData();
   }, []);
+
+  async function getData() {
+    const all = await axios.get("http://localhost:3001/musicRoutes/all");
+    setAllMusic(all.data);
+
+    const mostListened = await axios.get(
+      "http://localhost:3001/musicRoutes/mostListened"
+    );
+    setMostListened(mostListened.data);
+
+    const mostLiked = await axios.get(
+      "http://localhost:3001/musicRoutes/mostLiked"
+    );
+    setPopular(mostLiked.data);
+
+    const newRelease = await axios.get(
+      "http://localhost:3001/musicRoutes/newest"
+    );
+    setNewRelease(newRelease.data);
+  }
 
   return (
     <Container>
@@ -38,67 +65,18 @@ function Music({ setIsMusicActive, setIsHomeActive, setIsProfileActive }) {
           />,
         ]}
       />
-      <Filter
-        images={[
-          <img
-            src="/assets/logos/series/The Clone Wars-logo.jpg"
-            alt="The Clone Wars logo"
-          />,
-          <img src="/assets/logos/series/F1.jpg" alt="Formula 1 logo" />,
-          <img
-            src="/assets/logos/series/Stranger Things-logo.png"
-            alt="Stranger Things logo"
-          />,
-          <img
-            src="/assets/logos/series/Breaking Bad-logo.jpg"
-            alt="Breaking Bad logo"
-          />,
-          <img
-            src="/assets/logos/series/Moon Knight.jpg"
-            alt="Moon Knight logo"
-          />,
-        ]}
-      />
-      <Content
-        section={"New Releases"}
-        covers={[
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-        ]}
-      />
-      <Content
-        section={"Most Watched"}
-        covers={[
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-        ]}
-      />
-      <Content
-        section={"Popular"}
-        covers={[
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-        ]}
-      />
-      <Content
-        section={"All Series"}
-        covers={[
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-          <img src="/assets/covers/Star Wars 4.jpg" alt="" />,
-        ]}
-      />
+
+      {newRelease && (
+        <MusicContent section={"New Releases"} covers={newRelease} />
+      )}
+
+      {mostListened && (
+        <MusicContent section={"Most Listened"} covers={mostListened} />
+      )}
+
+      {popular && <MusicContent section={"Popular"} covers={popular} />}
+
+      {allMusic && <MusicContent section={"All"} covers={allMusic} />}
     </Container>
   );
 }

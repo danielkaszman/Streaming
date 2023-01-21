@@ -5,11 +5,11 @@ import RegistratePage from "./Pages/RegistratePage";
 import Home from "./Pages/Home";
 import Music from "./Pages/Music";
 import Details from "./Pages/Details";
+import Profile from "./Pages/Profile";
 import Navbar from "./Components/Navbar";
 import Sidebar from "./Components/Sidebar";
 import { userContext } from "./Context/userContext";
 import axios from "axios";
-import Profile from "./Pages/Profile";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -31,7 +31,7 @@ function App() {
           setModalOpen={setModalOpen}
         />
       )}
-      <Sidebar modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      {user && <Sidebar modalOpen={modalOpen} setModalOpen={setModalOpen} />}
 
       <Routes>
         <Route
@@ -81,7 +81,13 @@ function App() {
 
         <Route
           path="/details/:id"
-          element={user ? <Details /> : <Navigate to="/login" />}
+          element={
+            user ? (
+              <Details setIsHomeActive={setIsHomeActive} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
 
         <Route

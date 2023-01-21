@@ -90,7 +90,7 @@ export default Profile;
 
 const Content = styled.div`
   padding-top: 100px;
-  padding-inline: 40px;
+  padding-inline: 10%;
   color: rgb(240, 240, 240);
   letter-spacing: 1px;
 `;

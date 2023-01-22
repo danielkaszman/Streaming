@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { GoPrimitiveDot } from "react-icons/go";
-import { BsPlay, BsStop } from "react-icons/bs";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+import MusicPlayer from "./MusicPlayer";
 
 function MusicContent({ section, covers }) {
+  const [isPlayerOpen, setIsPlayerOpen] = useState(false);
+  const [musicId, setMusicId] = useState();
+
   return (
     <Container>
+      {musicId && (
+        <MusicPlayer
+          id={musicId}
+          isPlayerOpen={isPlayerOpen}
+          setIsPlayerOpen={setIsPlayerOpen}
+        />
+      )}
+
       <Content>
         <h2>{section}</h2>
 
         {covers.map((cover, index) => (
-          <Items key={index}>
+          <Items
+            key={index}
+            onClick={() => {
+              setMusicId(cover._id);
+              setIsPlayerOpen(true);
+            }}
+          >
             <Image>
               <img
                 src={`/assets/DB/music img/${cover.title + cover.coverExt}`}
@@ -30,8 +48,8 @@ function MusicContent({ section, covers }) {
               </Info>
             </SpaceHolder>
 
-            <Controls className="controls">
-              <BsPlay />
+            <Controls>
+              <BsHeart />
             </Controls>
           </Items>
         ))}
@@ -92,10 +110,6 @@ const Items = styled.div`
   :hover {
     background-color: rgba(121, 121, 121, 0.8);
     transform: scale(1.05);
-
-    .controls {
-      display: flex;
-    }
   }
 
   @media screen and (max-width: 998px) {
@@ -180,7 +194,7 @@ const Info = styled.div`
 `;
 
 const Controls = styled.div`
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
 
@@ -191,9 +205,7 @@ const Controls = styled.div`
   transition: all 250ms;
 
   svg {
-    height: 80%;
-    width: 80%;
-    padding-left: 5px;
+    transform: scale(1.5);
     color: rgb(49, 49, 49);
   }
 

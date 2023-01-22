@@ -13,16 +13,14 @@ router.get("/all", async (req, res) => {
 
 router.get("/mostLiked", async (req, res) => {
   const music = await MusicModel.find({})
-    .sort({
-      likes: "descending",
-    })
+    .sort({ likes: "descending" })
     .limit(4);
   res.send(music);
 });
 
 router.get("/mostListened", async (req, res) => {
   const music = await MusicModel.find({})
-    .sort({ views: "descending" })
+    .sort({ listens: "descending" })
     .limit(4);
   res.send(music);
 });
@@ -46,7 +44,7 @@ router.put("/listen/:id", async (req, res) => {
 
 router.get("/stream/:id", async (req, res) => {
   const music = await MusicModel.findById(req.params.id);
-  const fileName = music.title + music.videoExt;
+  const fileName = music.title + music.musicExt;
 
   const range = req.headers.range;
 

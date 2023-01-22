@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { VscChromeClose } from "react-icons/vsc";
 import Bounce from "react-reveal/Bounce";
 
-function Player({ id, isPlayerOpen, setIsPlayerOpen }) {
+function MusicPlayer({ id, isPlayerOpen, setIsPlayerOpen }) {
   const modalRef = useRef();
 
   useEffect(() => {
@@ -24,9 +24,10 @@ function Player({ id, isPlayerOpen, setIsPlayerOpen }) {
           <Close>
             <VscChromeClose onClick={closeModal} />
           </Close>
-          <video
+
+          <audio
             ref={modalRef}
-            src={`http://localhost:3001/movieRoutes/stream/${id}`}
+            src={`http://localhost:3001/musicRoutes/stream/${id}`}
             controls
           />
         </Content>
@@ -35,7 +36,7 @@ function Player({ id, isPlayerOpen, setIsPlayerOpen }) {
   );
 }
 
-export default Player;
+export default MusicPlayer;
 
 const Container = styled.div`
   display: ${(props) => (props.isPlayerOpen ? "flex" : "none")};
@@ -62,6 +63,7 @@ const Close = styled.div`
   align-items: center;
 
   margin: 20px;
+  width: 100%;
 
   svg {
     font-size: 30px;
@@ -77,15 +79,16 @@ const Close = styled.div`
 `;
 
 const Content = styled.div`
-  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  video {
-    border-radius: 20px;
-    height: 100%;
-    width: 100%;
+  audio {
+    width: 50vw;
 
-    :focus {
-      outline: transparent;
+    @media screen and (max-width: 1200px) {
+      width: 80vw;
     }
   }
 `;

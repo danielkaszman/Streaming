@@ -31,7 +31,14 @@ function App() {
           setModalOpen={setModalOpen}
         />
       )}
-      {user && <Sidebar modalOpen={modalOpen} setModalOpen={setModalOpen} />}
+      {user && (
+        <Sidebar
+          modalOpen={modalOpen}
+          isMusicActive={isMusicActive}
+          isProfileActive={isProfileActive}
+          setModalOpen={setModalOpen}
+        />
+      )}
 
       <Routes>
         <Route

@@ -43,26 +43,15 @@ function Music({ setIsMusicActive, setIsHomeActive, setIsProfileActive }) {
       <Carousel
         images={[
           <img
-            src="/assets/posters/series/Breaking Bad.jpg"
-            alt="Breaking Bad poster"
+            src="/assets/posters/series/Microphone.jpg"
+            alt="Microphone poster"
           />,
           <img
-            src="/assets/posters/series/Chernobyl.jpg"
-            alt="Chernobyl poster"
+            src="/assets/posters/series/Festival.jpg"
+            alt="Festival poster"
           />,
-          <img
-            src="/assets/posters/series/DTS.jpg"
-            alt="Drive to Survive poster"
-          />,
-          <img src="/assets/posters/series/Lucifer.jpg" alt="Lucifer poster" />,
-          <img
-            src="/assets/posters/series/Stranger Things.jpg"
-            alt="Stranger Things poster"
-          />,
-          <img
-            src="/assets/posters/series/The Clone Wars.jpg"
-            alt="The Clone Wars poster"
-          />,
+          <img src="/assets/posters/series/Rapper.jpg" alt="Rapper poster" />,
+          <img src="/assets/posters/series/Studio.jpg" alt="Studio poster" />,
         ]}
       />
 

@@ -3,8 +3,10 @@ import styled from "styled-components";
 import { VscChromeClose } from "react-icons/vsc";
 import Search from "./Search";
 import Logout from "./Logout";
+import MusicLink from "./MusicLink";
+import ProfileLink from "./ProfileLink";
 
-function Sidebar({ modalOpen, setModalOpen }) {
+function Sidebar({ modalOpen, setModalOpen, isMusicActive, isProfileActive }) {
   return (
     <Container modalOpen={modalOpen}>
       <Close>
@@ -15,9 +17,13 @@ function Sidebar({ modalOpen, setModalOpen }) {
         <Search />
       </SearchBar>
 
-      <LogoutBar>
+      <SidebarLinks>
+        <MusicLink isMusicActive={isMusicActive} />
+
+        <ProfileLink isProfileActive={isProfileActive} />
+
         <Logout span={true} />
-      </LogoutBar>
+      </SidebarLinks>
     </Container>
   );
 }
@@ -80,6 +86,14 @@ const SearchBar = styled.div`
   }
 `;
 
-const LogoutBar = styled.div`
+const SidebarLinks = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin-left: 20px;
+
+  div {
+    margin-top: 20px;
+  }
 `;

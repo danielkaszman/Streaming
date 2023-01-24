@@ -108,6 +108,7 @@ const Items = styled.div`
   transition: all 250ms;
 
   :hover {
+    border: 2px solid rgb(240, 240, 240);
     background-color: rgba(121, 121, 121, 0.8);
     transform: scale(1.05);
   }

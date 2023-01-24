@@ -71,6 +71,7 @@ const Wrap = styled.div`
   img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     color: rgb(240, 240, 240);
     border: 4px solid rgba(121, 121, 121, 0.5);
     border-radius: 40px;

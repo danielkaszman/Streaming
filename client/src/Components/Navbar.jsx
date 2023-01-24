@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { IoTvOutline, IoMenuOutline } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
+import { IoMenuOutline } from "react-icons/io5";
 import Search from "./Search";
 import Logout from "./Logout";
+import MusicLink from "./MusicLink";
+import ProfileLink from "./ProfileLink";
 
 function Navbar({
   isHomeActive,
@@ -26,15 +27,9 @@ function Navbar({
 
       <Right>
         <Hide>
-          <Link to={"/music"} className={isMusicActive ? "active" : ""}>
-            <IoTvOutline />
-            <span>Music</span>
-          </Link>
+          <MusicLink isMusicActive={isMusicActive} />
 
-          <Link to={"/profile"} className={isProfileActive ? "active" : ""}>
-            <CgProfile />
-            <span>Profile</span>
-          </Link>
+          <ProfileLink isProfileActive={isProfileActive} />
 
           <Logout span={false} />
         </Hide>
@@ -106,32 +101,6 @@ const Right = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-right: 20px;
-    font-weight: 300;
-    font-size: 20px;
-    color: rgb(240, 240, 240);
-    transition: all 250ms;
-
-    span {
-      margin-left: 5px;
-    }
-
-    &.active {
-      color: rgb(192, 0, 0);
-      cursor: default;
-      pointer-events: none;
-    }
-
-    :hover {
-      color: rgb(192, 0, 0);
-    }
-  }
 
   @media screen and (max-width: 1200px) {
     justify-content: flex-end;

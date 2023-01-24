@@ -36,7 +36,6 @@ const Container = styled.div`
   color: rgb(240, 240, 240);
   font-size: 25px;
   font-weight: 300;
-  margin-left: 20px;
   transition: all 250ms;
 
   span {

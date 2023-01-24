@@ -43,28 +43,14 @@ function Home({ setIsHomeActive, setIsMusicActive, setIsProfileActive }) {
     <Container>
       <Carousel
         images={[
-          <img src="/assets/posters/movies/Batman.jpg" alt="Batman poster" />,
-          <img
-            src="/assets/posters/movies/Black Adam.jpg"
-            alt="Black Adam poster"
-          />,
-          <img
-            src="/assets/posters/movies/Dr. Strange.jpg"
-            alt="Dr. Strange poster"
-          />,
-          <img
-            src="/assets/posters/movies/John Wick.jpg"
-            alt="John Wick poster"
-          />,
-          <img src="/assets/posters/movies/Joker.jpg" alt="Joker poster" />,
-          <img src="/assets/posters/movies/Rampage.jpg" alt="Rampage poster" />,
-          <img
-            src="/assets/posters/movies/Star Wars.jpg"
-            alt="Star Wars poster"
-          />,
+          <img src="/assets/posters/movies/Sunset.jpg" alt="Sunset poster" />,
+          <img src="/assets/posters/movies/Guitar.jpg" alt="Guitar poster" />,
+          <img src="/assets/posters/movies/Fire.jpg" alt="Fire poster" />,
+          <img src="/assets/posters/movies/Nature.jpg" alt="Nature poster" />,
         ]}
       />
 
+      {/*
       <Filter
         images={[
           <img src="/assets/logos/movies/DC-logo.jpg" alt="DC logo" />,
@@ -83,6 +69,7 @@ function Home({ setIsHomeActive, setIsMusicActive, setIsProfileActive }) {
           />,
         ]}
       />
+      */}
 
       {newRelease && <Content section={"New Releases"} covers={newRelease} />}
 

@@ -34,10 +34,12 @@ router.get("/newest", async (req, res) => {
   res.send(movies);
 });
 
+/*
 router.put("/like/:id", async (req, res) => {
   await MovieModel.findByIdAndUpdate(req.params.id, { $inc: { likes: 1 } });
   res.send("Liked!");
 });
+*/
 
 router.put("/view/:id", async (req, res) => {
   await MovieModel.findByIdAndUpdate(req.params.id, { $inc: { views: 1 } });

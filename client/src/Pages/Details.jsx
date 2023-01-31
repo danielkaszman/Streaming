@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { BsPlay, BsHeart, BsHeartFill, BsShare } from "react-icons/bs";
 import { GoPrimitiveDot } from "react-icons/go";
 import Player from "../Components/Player";
 import axios from "axios";
+import { userContext } from "../Context/userContext";
 
 function Details({ setIsHomeActive }) {
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);
   const [movie, setMovie] = useState();
   const params = useParams();
+
+  const { user, setUser } = useContext(userContext);
+
+  const userID = user._id;
+  const userFavs = user.favourites;
 
   useEffect(() => {
     setIsHomeActive(false);
@@ -21,20 +27,33 @@ function Details({ setIsHomeActive }) {
     const response = await axios.get(
       `http://localhost:3001/movieRoutes/selected/${params.id}`
     );
+
     setMovie(response.data);
   }
 
   async function increaseViewCount(id) {
     await axios.put(`http://localhost:3001/movieRoutes/view/${id}`);
+
     getMovie();
   }
 
-  /*
-  async function increaseLikes(id) {
-    await axios.put(`http://localhost:3001/movieRoutes/like/${id}`);
-    getMovie();
+  async function likeMovie(id) {
+    await axios.put(`http://localhost:3001/userRoutes/likeContent/${id}`, {
+      userID,
+    });
+
+    checkLogin();
   }
-  */
+
+  function checkLogin() {
+    axios.get("http://localhost:3001/userRoutes/loggedIn").then((response) => {
+      if (response.data.loggedIn === true) {
+        setUser(response.data.user);
+      } else {
+        setUser(null);
+      }
+    });
+  }
 
   return (
     <Container>
@@ -62,10 +81,14 @@ function Details({ setIsHomeActive }) {
               </Play>
               <Like
                 onClick={() => {
-                  //increaseLikes(movie._id);
+                  likeMovie(movie._id);
                 }}
               >
-                <BsHeart />
+                {userFavs.find((item) => item === movie._id) ? (
+                  <BsHeartFill className="heartFill" />
+                ) : (
+                  <BsHeart />
+                )}
               </Like>
               <Share>
                 <BsShare />
@@ -82,16 +105,7 @@ function Details({ setIsHomeActive }) {
 
               <span>Liked by {movie.likes} people</span>
             </Info>
-            <p>
-              The Imperial Forces -- under orders from cruel Darth Vader (David
-              Prowse) -- hold Princess Leia (Carrie Fisher) hostage, in their
-              efforts to quell the rebellion against the Galactic Empire. Luke
-              Skywalker (Mark Hamill) and Han Solo (Harrison Ford), captain of
-              the Millennium Falcon, work together with the companionable droid
-              duo R2-D2 (Kenny Baker) and C-3PO (Anthony Daniels) to rescue the
-              beautiful princess, help the Rebel Alliance, and restore freedom
-              and justice to the Galaxy.
-            </p>
+            <p></p>
           </Content>
         </>
       )}
@@ -210,6 +224,10 @@ const Like = styled.div`
   font-size: 25px;
   z-index: 5;
   transition: transform 250ms;
+
+  .heartFill {
+    color: rgb(192, 0, 0);
+  }
 
   :hover {
     cursor: pointer;

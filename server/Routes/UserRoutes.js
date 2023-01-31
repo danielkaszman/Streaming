@@ -125,4 +125,26 @@ router.put("/changePwd", async (req, res) => {
   res.send("Password updated!");
 });
 
+router.put("/likeContent/:id", async (req, res) => {
+  const foundUser = await UserModel.findById(req.body.userID);
+
+  if (foundUser.favourites.find((item) => item === req.params.id)) {
+    await UserModel.findByIdAndUpdate(req.body.userID, {
+      $pull: { favourites: req.params.id },
+    });
+  } else {
+    await UserModel.findByIdAndUpdate(req.body.userID, {
+      $push: { favourites: req.params.id },
+    });
+  }
+
+  const updatedUser = await UserModel.findById(req.body.userID, {
+    password: 0,
+  });
+
+  req.session.user = updatedUser;
+
+  res.send("Content liked!");
+});
+
 module.exports = router;

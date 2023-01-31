@@ -1,12 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { GoPrimitiveDot } from "react-icons/go";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import MusicPlayer from "./MusicPlayer";
+import { userContext } from "../Context/userContext";
+import axios from "axios";
 
 function MusicContent({ section, covers }) {
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);
   const [musicId, setMusicId] = useState();
+
+  const { user, setUser } = useContext(userContext);
+
+  const userID = user._id;
+  const userFavs = user.favourites;
+
+  async function likeSong(id) {
+    await axios.put(`http://localhost:3001/userRoutes/likeContent/${id}`, {
+      userID,
+    });
+
+    checkLogin();
+  }
+
+  function checkLogin() {
+    axios.get("http://localhost:3001/userRoutes/loggedIn").then((response) => {
+      if (response.data.loggedIn === true) {
+        setUser(response.data.user);
+      } else {
+        setUser(null);
+      }
+    });
+  }
 
   return (
     <Container>
@@ -22,20 +47,19 @@ function MusicContent({ section, covers }) {
         <h2>{section}</h2>
 
         {covers.map((cover, index) => (
-          <Items
-            key={index}
-            onClick={() => {
-              setMusicId(cover._id);
-              setIsPlayerOpen(true);
-            }}
-          >
+          <Items key={index}>
             <Image>
               <img
                 src={`/assets/DB/music img/${cover.title + cover.coverExt}`}
               />
             </Image>
 
-            <SpaceHolder>
+            <SpaceHolder
+              onClick={() => {
+                setMusicId(cover._id);
+                setIsPlayerOpen(true);
+              }}
+            >
               <Title>
                 <h3>{cover.title}</h3>
               </Title>
@@ -48,8 +72,12 @@ function MusicContent({ section, covers }) {
               </Info>
             </SpaceHolder>
 
-            <Controls>
-              <BsHeart />
+            <Controls onClick={() => likeSong(cover._id)}>
+              {userFavs.find((item) => item === cover._id) ? (
+                <BsHeartFill className="heartFill" />
+              ) : (
+                <BsHeart />
+              )}
             </Controls>
           </Items>
         ))}
@@ -208,6 +236,10 @@ const Controls = styled.div`
   svg {
     transform: scale(1.5);
     color: rgb(49, 49, 49);
+  }
+
+  .heartFill {
+    color: rgb(192, 0, 0);
   }
 
   :hover {

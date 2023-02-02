@@ -6,7 +6,7 @@ import MusicPlayer from "./MusicPlayer";
 import { userContext } from "../Context/userContext";
 import axios from "axios";
 
-function MusicContent({ section, covers }) {
+function MusicContent({ section, covers, changed, setChanged }) {
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);
   const [musicId, setMusicId] = useState();
 
@@ -15,11 +15,28 @@ function MusicContent({ section, covers }) {
   const userID = user._id;
   const userFavs = user.favourites;
 
+  async function incListens(id) {
+    await axios.put(`http://localhost:3001/musicRoutes/listen/${id}`);
+
+    setChanged(!changed);
+  }
+
   async function likeSong(id) {
     await axios.put(`http://localhost:3001/userRoutes/likeContent/${id}`, {
       userID,
     });
 
+    if (userFavs.find((item) => item === id)) {
+      await axios.put(`http://localhost:3001/musicRoutes/like/${id}`, {
+        liked: true,
+      });
+    } else {
+      await axios.put(`http://localhost:3001/musicRoutes/like/${id}`, {
+        liked: false,
+      });
+    }
+
+    setChanged(!changed);
     checkLogin();
   }
 
@@ -51,6 +68,7 @@ function MusicContent({ section, covers }) {
             <Image>
               <img
                 src={`/assets/DB/music img/${cover.title + cover.coverExt}`}
+                alt={cover.title}
               />
             </Image>
 
@@ -58,15 +76,17 @@ function MusicContent({ section, covers }) {
               onClick={() => {
                 setMusicId(cover._id);
                 setIsPlayerOpen(true);
+                incListens(cover._id);
               }}
             >
               <Title>
                 <h3>{cover.title}</h3>
               </Title>
+
               <Info>
                 <span>Length: ???</span>
                 <GoPrimitiveDot />
-                <span>Views: {cover.listens}</span>
+                <span>Listens: {cover.listens}</span>
                 <GoPrimitiveDot />
                 <span>Liked by {cover.likes} people</span>
               </Info>

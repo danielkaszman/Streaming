@@ -32,12 +32,15 @@ router.get("/newest", async (req, res) => {
   res.send(music);
 });
 
-/*
 router.put("/like/:id", async (req, res) => {
-  await MusicModel.findByIdAndUpdate(req.params.id, { $inc: { likes: 1 } });
-  res.send("Liked!");
+  if (req.body.liked) {
+    await MusicModel.findByIdAndUpdate(req.params.id, { $inc: { likes: -1 } });
+  } else {
+    await MusicModel.findByIdAndUpdate(req.params.id, { $inc: { likes: 1 } });
+  }
+
+  res.send("Likes changed!");
 });
-*/
 
 router.put("/listen/:id", async (req, res) => {
   await MusicModel.findByIdAndUpdate(req.params.id, { $inc: { listens: 1 } });

@@ -144,7 +144,7 @@ router.put("/likeContent/:id", async (req, res) => {
 
   req.session.user = updatedUser;
 
-  res.send("Content liked!");
+  res.send("Liked!");
 });
 
 module.exports = router;

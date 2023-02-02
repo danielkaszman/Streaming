@@ -9,6 +9,7 @@ function Music({ setIsMusicActive, setIsHomeActive, setIsProfileActive }) {
   const [mostListened, setMostListened] = useState();
   const [popular, setPopular] = useState();
   const [newRelease, setNewRelease] = useState();
+  const [changed, setChanged] = useState(false);
 
   useEffect(() => {
     setIsMusicActive(true);
@@ -16,7 +17,7 @@ function Music({ setIsMusicActive, setIsHomeActive, setIsProfileActive }) {
     setIsProfileActive(false);
 
     getData();
-  }, []);
+  }, [changed]);
 
   async function getData() {
     const all = await axios.get("http://localhost:3001/musicRoutes/all");
@@ -56,16 +57,40 @@ function Music({ setIsMusicActive, setIsHomeActive, setIsProfileActive }) {
       />
 
       {newRelease && (
-        <MusicContent section={"New Releases"} covers={newRelease} />
+        <MusicContent
+          section={"New Releases"}
+          covers={newRelease}
+          changed={changed}
+          setChanged={setChanged}
+        />
       )}
 
       {mostListened && (
-        <MusicContent section={"Most Listened"} covers={mostListened} />
+        <MusicContent
+          section={"Most Listened"}
+          covers={mostListened}
+          changed={changed}
+          setChanged={setChanged}
+        />
       )}
 
-      {popular && <MusicContent section={"Popular"} covers={popular} />}
+      {popular && (
+        <MusicContent
+          section={"Popular"}
+          covers={popular}
+          changed={changed}
+          setChanged={setChanged}
+        />
+      )}
 
-      {allMusic && <MusicContent section={"All"} covers={allMusic} />}
+      {allMusic && (
+        <MusicContent
+          section={"All"}
+          covers={allMusic}
+          changed={changed}
+          setChanged={setChanged}
+        />
+      )}
     </Container>
   );
 }

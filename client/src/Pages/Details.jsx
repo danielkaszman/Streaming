@@ -42,6 +42,17 @@ function Details({ setIsHomeActive }) {
       userID,
     });
 
+    if (userFavs.find((item) => item === id)) {
+      await axios.put(`http://localhost:3001/movieRoutes/like/${id}`, {
+        liked: true,
+      });
+    } else {
+      await axios.put(`http://localhost:3001/movieRoutes/like/${id}`, {
+        liked: false,
+      });
+    }
+
+    getMovie();
     checkLogin();
   }
 

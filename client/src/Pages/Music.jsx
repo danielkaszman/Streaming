@@ -4,7 +4,12 @@ import MusicContent from "../Components/MusicContent";
 import { Container } from "../Components/StyledComponents/Main_Bg_Container";
 import axios from "axios";
 
-function Music({ setIsMusicActive, setIsHomeActive, setIsProfileActive }) {
+function Music({
+  setIsMusicActive,
+  setIsHomeActive,
+  setIsProfileActive,
+  searchedMusic,
+}) {
   const [allMusic, setAllMusic] = useState();
   const [mostListened, setMostListened] = useState();
   const [popular, setPopular] = useState();
@@ -55,41 +60,51 @@ function Music({ setIsMusicActive, setIsHomeActive, setIsProfileActive }) {
           <img src="/assets/posters/series/Studio.jpg" alt="Studio poster" />,
         ]}
       />
-
-      {newRelease && (
+      {searchedMusic ? (
         <MusicContent
-          section={"New Releases"}
-          covers={newRelease}
+          section={"Searched..."}
+          covers={searchedMusic}
           changed={changed}
           setChanged={setChanged}
         />
-      )}
+      ) : (
+        <>
+          {newRelease && (
+            <MusicContent
+              section={"New Releases"}
+              covers={newRelease}
+              changed={changed}
+              setChanged={setChanged}
+            />
+          )}
 
-      {mostListened && (
-        <MusicContent
-          section={"Most Listened"}
-          covers={mostListened}
-          changed={changed}
-          setChanged={setChanged}
-        />
-      )}
+          {mostListened && (
+            <MusicContent
+              section={"Most Listened"}
+              covers={mostListened}
+              changed={changed}
+              setChanged={setChanged}
+            />
+          )}
 
-      {popular && (
-        <MusicContent
-          section={"Popular"}
-          covers={popular}
-          changed={changed}
-          setChanged={setChanged}
-        />
-      )}
+          {popular && (
+            <MusicContent
+              section={"Popular"}
+              covers={popular}
+              changed={changed}
+              setChanged={setChanged}
+            />
+          )}
 
-      {allMusic && (
-        <MusicContent
-          section={"All"}
-          covers={allMusic}
-          changed={changed}
-          setChanged={setChanged}
-        />
+          {allMusic && (
+            <MusicContent
+              section={"All"}
+              covers={allMusic}
+              changed={changed}
+              setChanged={setChanged}
+            />
+          )}
+        </>
       )}
     </Container>
   );

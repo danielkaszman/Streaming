@@ -12,6 +12,8 @@ function Navbar({
   isMusicActive,
   isProfileActive,
   setModalOpen,
+  setSearchedMusic,
+  setSearchedMovie,
 }) {
   return (
     <Container>
@@ -22,7 +24,12 @@ function Navbar({
       </Left>
 
       <Middle>
-        <Search />
+        <Search
+          isHomeActive={isHomeActive}
+          isMusicActive={isMusicActive}
+          setSearchedMovie={setSearchedMovie}
+          setSearchedMusic={setSearchedMusic}
+        />
       </Middle>
 
       <Right>

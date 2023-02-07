@@ -1,9 +1,31 @@
 import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import styled from "styled-components";
+import axios from "axios";
 
-function Search() {
+function Search({
+  isHomeActive,
+  isMusicActive,
+  setSearchedMusic,
+  setSearchedMovie,
+}) {
   const [inputFocus, setInputFocus] = useState(false);
+
+  async function searchContent(searchItem) {
+    if (isHomeActive) {
+      await axios
+        .post(`http://localhost:3001/movieRoutes/search`, { searchItem })
+        .then((response) => {
+          setSearchedMovie(response.data);
+        });
+    } else if (isMusicActive) {
+      await axios
+        .post(`http://localhost:3001/musicRoutes/search`, { searchItem })
+        .then((response) => {
+          setSearchedMusic(response.data);
+        });
+    }
+  }
 
   return (
     <Container inputFocus={inputFocus}>
@@ -15,6 +37,14 @@ function Search() {
         placeholder="Search..."
         onFocus={() => setInputFocus(true)}
         onBlur={() => setInputFocus(false)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" && event.target.value.length > 0) {
+            searchContent(event.target.value);
+          } else if (event.key === "Enter" && event.target.value.length === 0) {
+            setSearchedMovie();
+            setSearchedMusic();
+          }
+        }}
       />
     </Container>
   );

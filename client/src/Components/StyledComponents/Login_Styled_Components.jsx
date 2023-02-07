@@ -30,7 +30,7 @@ export const Content = styled.div`
 
   width: 400px;
   padding: 50px 50px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(5px);
   border-radius: 30px;
 `;

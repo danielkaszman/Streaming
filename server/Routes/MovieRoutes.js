@@ -34,6 +34,12 @@ router.get("/newest", async (req, res) => {
   res.send(movies);
 });
 
+router.post("/search", async (req, res) => {
+  const regex = new RegExp(req.body.searchItem, "i");
+  const searchedMovie = await MovieModel.find({ title: { $regex: regex } });
+  res.send(searchedMovie);
+});
+
 router.put("/like/:id", async (req, res) => {
   if (req.body.liked) {
     await MovieModel.findByIdAndUpdate(req.params.id, { $inc: { likes: -1 } });

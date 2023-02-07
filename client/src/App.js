@@ -18,6 +18,8 @@ function App() {
   const [isMusicActive, setIsMusicActive] = useState(false);
   const [isProfileActive, setIsProfileActive] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [searchedMovie, setSearchedMovie] = useState();
+  const [searchedMusic, setSearchedMusic] = useState();
 
   const [user, setUser] = useState(null);
 
@@ -28,14 +30,19 @@ function App() {
           isHomeActive={isHomeActive}
           isMusicActive={isMusicActive}
           isProfileActive={isProfileActive}
+          setSearchedMovie={setSearchedMovie}
+          setSearchedMusic={setSearchedMusic}
           setModalOpen={setModalOpen}
         />
       )}
       {user && (
         <Sidebar
           modalOpen={modalOpen}
+          isHomeActive={isHomeActive}
           isMusicActive={isMusicActive}
           isProfileActive={isProfileActive}
+          setSearchedMovie={setSearchedMovie}
+          setSearchedMusic={setSearchedMusic}
           setModalOpen={setModalOpen}
         />
       )}
@@ -49,6 +56,7 @@ function App() {
                 setIsHomeActive={setIsHomeActive}
                 setIsMusicActive={setIsMusicActive}
                 setIsProfileActive={setIsProfileActive}
+                searchedMovie={searchedMovie}
               />
             ) : (
               <Navigate to="/login" />
@@ -64,6 +72,7 @@ function App() {
                 setIsMusicActive={setIsMusicActive}
                 setIsHomeActive={setIsHomeActive}
                 setIsProfileActive={setIsProfileActive}
+                searchedMusic={searchedMusic}
               />
             ) : (
               <Navigate to="/login" />

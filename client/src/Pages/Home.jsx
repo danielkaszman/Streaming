@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Carousel from "../Components/Carousel";
-import Filter from "../Components/Filter";
 import Content from "../Components/Content";
 import { Container } from "../Components/StyledComponents/Main_Bg_Container";
 
-function Home({ setIsHomeActive, setIsMusicActive, setIsProfileActive }) {
+function Home({
+  setIsHomeActive,
+  setIsMusicActive,
+  setIsProfileActive,
+  searchedMovie,
+}) {
   const [allMovies, setAllMovies] = useState();
   const [mostWatched, setMostWatched] = useState();
   const [popular, setPopular] = useState();
@@ -49,35 +53,23 @@ function Home({ setIsHomeActive, setIsMusicActive, setIsProfileActive }) {
           <img src="/assets/posters/movies/Nature.jpg" alt="Nature poster" />,
         ]}
       />
+      {searchedMovie ? (
+        <Content section={"Searched..."} covers={searchedMovie} />
+      ) : (
+        <>
+          {newRelease && (
+            <Content section={"New Releases"} covers={newRelease} />
+          )}
 
-      {/*
-      <Filter
-        images={[
-          <img src="/assets/logos/movies/DC-logo.jpg" alt="DC logo" />,
-          <img src="/assets/logos/movies/Marvel-logo.jpg" alt="Marvel logo" />,
-          <img
-            src="/assets/logos/movies/Star Wars-logo.jpg"
-            alt="Star Wars logo"
-          />,
-          <img
-            src="/assets/logos/movies/Harry Potter-logo.jpg"
-            alt="Harry Potter logo"
-          />,
-          <img
-            src="/assets/logos/movies/Jurassic Park-logo.jpg"
-            alt="Jurassic Park logo"
-          />,
-        ]}
-      />
-      */}
+          {mostWatched && (
+            <Content section={"Most Watched"} covers={mostWatched} />
+          )}
 
-      {newRelease && <Content section={"New Releases"} covers={newRelease} />}
+          {popular && <Content section={"Popular"} covers={popular} />}
 
-      {mostWatched && <Content section={"Most Watched"} covers={mostWatched} />}
-
-      {popular && <Content section={"Popular"} covers={popular} />}
-
-      {allMovies && <Content section={"All"} covers={allMovies} />}
+          {allMovies && <Content section={"All"} covers={allMovies} />}
+        </>
+      )}
     </Container>
   );
 }

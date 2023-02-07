@@ -6,7 +6,15 @@ import Logout from "./Logout";
 import MusicLink from "./MusicLink";
 import ProfileLink from "./ProfileLink";
 
-function Sidebar({ modalOpen, setModalOpen, isMusicActive, isProfileActive }) {
+function Sidebar({
+  modalOpen,
+  setModalOpen,
+  isHomeActive,
+  isMusicActive,
+  isProfileActive,
+  setSearchedMusic,
+  setSearchedMovie,
+}) {
   return (
     <Container modalOpen={modalOpen}>
       <Close>
@@ -14,7 +22,12 @@ function Sidebar({ modalOpen, setModalOpen, isMusicActive, isProfileActive }) {
       </Close>
 
       <SearchBar>
-        <Search />
+        <Search
+          isHomeActive={isHomeActive}
+          isMusicActive={isMusicActive}
+          setSearchedMovie={setSearchedMovie}
+          setSearchedMusic={setSearchedMusic}
+        />
       </SearchBar>
 
       <SidebarLinks>

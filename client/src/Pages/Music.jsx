@@ -25,22 +25,16 @@ function Music({
   }, [changed]);
 
   async function getData() {
-    const all = await axios.get("http://localhost:3001/musicRoutes/all");
+    const all = await axios.get("/musicRoutes/all");
     setAllMusic(all.data);
 
-    const mostListened = await axios.get(
-      "http://localhost:3001/musicRoutes/mostListened"
-    );
+    const mostListened = await axios.get("/musicRoutes/mostListened");
     setMostListened(mostListened.data);
 
-    const mostLiked = await axios.get(
-      "http://localhost:3001/musicRoutes/mostLiked"
-    );
+    const mostLiked = await axios.get("/musicRoutes/mostLiked");
     setPopular(mostLiked.data);
 
-    const newRelease = await axios.get(
-      "http://localhost:3001/musicRoutes/newest"
-    );
+    const newRelease = await axios.get("/musicRoutes/newest");
     setNewRelease(newRelease.data);
   }
 

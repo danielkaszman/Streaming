@@ -16,22 +16,22 @@ function MusicContent({ section, covers, changed, setChanged }) {
   const userFavs = user.favourites;
 
   async function incListens(id) {
-    await axios.put(`http://localhost:3001/musicRoutes/listen/${id}`);
+    await axios.put(`/musicRoutes/listen/${id}`);
 
     setChanged(!changed);
   }
 
   async function likeSong(id) {
-    await axios.put(`http://localhost:3001/userRoutes/likeContent/${id}`, {
+    await axios.put(`/userRoutes/likeContent/${id}`, {
       userID,
     });
 
     if (userFavs.find((item) => item === id)) {
-      await axios.put(`http://localhost:3001/musicRoutes/like/${id}`, {
+      await axios.put(`/musicRoutes/like/${id}`, {
         liked: true,
       });
     } else {
-      await axios.put(`http://localhost:3001/musicRoutes/like/${id}`, {
+      await axios.put(`/musicRoutes/like/${id}`, {
         liked: false,
       });
     }
@@ -41,7 +41,7 @@ function MusicContent({ section, covers, changed, setChanged }) {
   }
 
   function checkLogin() {
-    axios.get("http://localhost:3001/userRoutes/loggedIn").then((response) => {
+    axios.get("/userRoutes/loggedIn").then((response) => {
       if (response.data.loggedIn === true) {
         setUser(response.data.user);
       } else {
@@ -84,8 +84,6 @@ function MusicContent({ section, covers, changed, setChanged }) {
               </Title>
 
               <Info>
-                <span>Length: ???</span>
-                <GoPrimitiveDot />
                 <span>Listens: {cover.listens}</span>
                 <GoPrimitiveDot />
                 <span>Liked by {cover.likes} people</span>

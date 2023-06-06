@@ -14,13 +14,13 @@ function Search({
   async function searchContent(searchItem) {
     if (isHomeActive) {
       await axios
-        .post(`http://localhost:3001/movieRoutes/search`, { searchItem })
+        .post(`/movieRoutes/search`, { searchItem })
         .then((response) => {
           setSearchedMovie(response.data);
         });
     } else if (isMusicActive) {
       await axios
-        .post(`http://localhost:3001/musicRoutes/search`, { searchItem })
+        .post(`/musicRoutes/search`, { searchItem })
         .then((response) => {
           setSearchedMusic(response.data);
         });

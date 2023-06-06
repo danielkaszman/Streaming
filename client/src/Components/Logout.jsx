@@ -8,16 +8,18 @@ function Logout({ span }) {
   const { setUser } = useContext(userContext);
 
   function logout() {
-    axios.get("http://localhost:3001/userRoutes/logout").then(() => {
+    axios.get("/userRoutes/logout").then(() => {
       checkLogin();
     });
   }
 
   function checkLogin() {
-    axios.get("http://localhost:3001/userRoutes/loggedIn").then(() => {
+    axios.get("/userRoutes/loggedIn").then(() => {
       setUser(null);
     });
   }
+
+  //http://localhost:3001
 
   return (
     <Container onClick={logout}>

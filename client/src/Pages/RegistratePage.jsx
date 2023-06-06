@@ -27,7 +27,7 @@ function RegistratePage() {
 
   function registrate() {
     axios
-      .post("http://localhost:3001/userRoutes/registrate", {
+      .post("/userRoutes/registrate", {
         name,
         email,
         password,
@@ -39,7 +39,7 @@ function RegistratePage() {
   }
 
   function checkLogin() {
-    axios.get("http://localhost:3001/userRoutes/loggedIn").then((response) => {
+    axios.get("/userRoutes/loggedIn").then((response) => {
       if (response.data.loggedIn === true) {
         setUser(response.data.user);
       } else {

@@ -24,16 +24,14 @@ function LoginPage() {
   }, []);
 
   function login() {
-    axios
-      .post("http://localhost:3001/userRoutes/login", { email, password })
-      .then((response) => {
-        setMsg(response.data);
-        checkLogin();
-      });
+    axios.post("/userRoutes/login", { email, password }).then((response) => {
+      setMsg(response.data);
+      checkLogin();
+    });
   }
 
   function checkLogin() {
-    axios.get("http://localhost:3001/userRoutes/loggedIn").then((response) => {
+    axios.get("/userRoutes/loggedIn").then((response) => {
       if (response.data.loggedIn === true) {
         setUser(response.data.user);
       } else {

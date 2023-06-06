@@ -24,22 +24,16 @@ function Home({
   }, []);
 
   async function getData() {
-    const all = await axios.get("http://localhost:3001/movieRoutes/all");
+    const all = await axios.get("/movieRoutes/all");
     setAllMovies(all.data);
 
-    const mostWatched = await axios.get(
-      "http://localhost:3001/movieRoutes/mostWatched"
-    );
+    const mostWatched = await axios.get("/movieRoutes/mostWatched");
     setMostWatched(mostWatched.data);
 
-    const mostLiked = await axios.get(
-      "http://localhost:3001/movieRoutes/mostLiked"
-    );
+    const mostLiked = await axios.get("/movieRoutes/mostLiked");
     setPopular(mostLiked.data);
 
-    const newRelease = await axios.get(
-      "http://localhost:3001/movieRoutes/newest"
-    );
+    const newRelease = await axios.get("/movieRoutes/newest");
     setNewRelease(newRelease.data);
   }
 

@@ -20,35 +20,29 @@ function Profile({ setIsHomeActive, setIsMusicActive, setIsProfileActive }) {
   function changeName() {
     const newName = prompt("Enter new name:");
 
-    axios
-      .put("http://localhost:3001/userRoutes/changeName", { newName, email })
-      .then(() => {
-        checkLogin();
-      });
+    axios.put("/userRoutes/changeName", { newName, email }).then(() => {
+      checkLogin();
+    });
   }
 
   function changeEmail() {
     const newEmail = prompt("Enter new Email:");
 
-    axios
-      .put("http://localhost:3001/userRoutes/changeEmail", { newEmail, email })
-      .then(() => {
-        checkLogin();
-      });
+    axios.put("/userRoutes/changeEmail", { newEmail, email }).then(() => {
+      checkLogin();
+    });
   }
 
   function changePwd() {
     const newPwd = prompt("Enter new password:");
 
-    axios
-      .put("http://localhost:3001/userRoutes/changePwd", { newPwd, email })
-      .then(() => {
-        checkLogin();
-      });
+    axios.put("/userRoutes/changePwd", { newPwd, email }).then(() => {
+      checkLogin();
+    });
   }
 
   function checkLogin() {
-    axios.get("http://localhost:3001/userRoutes/loggedIn").then((response) => {
+    axios.get("/userRoutes/loggedIn").then((response) => {
       if (response.data.loggedIn === true) {
         setUser(response.data.user);
       } else {

@@ -24,30 +24,28 @@ function Details({ setIsHomeActive }) {
   }, []);
 
   async function getMovie() {
-    const response = await axios.get(
-      `http://localhost:3001/movieRoutes/selected/${params.id}`
-    );
+    const response = await axios.get(`/movieRoutes/selected/${params.id}`);
 
     setMovie(response.data);
   }
 
   async function increaseViewCount(id) {
-    await axios.put(`http://localhost:3001/movieRoutes/view/${id}`);
+    await axios.put(`/movieRoutes/view/${id}`);
 
     getMovie();
   }
 
   async function likeMovie(id) {
-    await axios.put(`http://localhost:3001/userRoutes/likeContent/${id}`, {
+    await axios.put(`/userRoutes/likeContent/${id}`, {
       userID,
     });
 
     if (userFavs.find((item) => item === id)) {
-      await axios.put(`http://localhost:3001/movieRoutes/like/${id}`, {
+      await axios.put(`/movieRoutes/like/${id}`, {
         liked: true,
       });
     } else {
-      await axios.put(`http://localhost:3001/movieRoutes/like/${id}`, {
+      await axios.put(`/movieRoutes/like/${id}`, {
         liked: false,
       });
     }
@@ -57,7 +55,7 @@ function Details({ setIsHomeActive }) {
   }
 
   function checkLogin() {
-    axios.get("http://localhost:3001/userRoutes/loggedIn").then((response) => {
+    axios.get("/userRoutes/loggedIn").then((response) => {
       if (response.data.loggedIn === true) {
         setUser(response.data.user);
       } else {
@@ -101,15 +99,8 @@ function Details({ setIsHomeActive }) {
                   <BsHeart />
                 )}
               </Like>
-              <Share>
-                <BsShare />
-              </Share>
             </Controls>
             <Info>
-              <span>Length: ???</span>
-
-              <GoPrimitiveDot />
-
               <span>Views: {movie.views}</span>
 
               <GoPrimitiveDot />

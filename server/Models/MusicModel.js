@@ -25,7 +25,7 @@ const MusicSchema = new mongoose.Schema({
   },
   release: {
     type: Date,
-    require: true,
+    required: true,
     default: Date.now,
   },
 });
